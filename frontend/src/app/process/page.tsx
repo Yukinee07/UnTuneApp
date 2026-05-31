@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Upload, Video, Radio, Cpu, BadgeCheck } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,18 +12,58 @@ import { YouTubeTab } from "@/components/youtube-tab";
 import { LiveTab    } from "@/components/live-tab";
 import { api } from "@/lib/api";
 import type { ModelInfo, Settings } from "@/lib/types";
-import { DEFAULT_SETTINGS } from "@/lib/types";
+import { DEFAULT_FILE_SETTINGS, DEFAULT_LIVE_SETTINGS } from "@/lib/types";
+
+// Each tab keeps its own settings.  Switching tabs preserves what you had
+// per-mode, and the Reset button restores the *mode's* default (CLI-clean
+// for file/youtube, smoothing-on for live).
+type Mode = "file" | "youtube" | "live";
 
 export default function ProcessPage() {
-  const [info, setInfo] = useState<ModelInfo | null>(null);
+  const [info,    setInfo]    = useState<ModelInfo | null>(null);
   const [infoErr, setInfoErr] = useState<string | null>(null);
-  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+
+  const [mode,         setMode]         = useState<Mode>("file");
+  const [fileSettings, setFileSettings] = useState<Settings>(DEFAULT_FILE_SETTINGS);
+  const [ytSettings,   setYtSettings]   = useState<Settings>(DEFAULT_FILE_SETTINGS);
+  const [liveSettings, setLiveSettings] = useState<Settings>(DEFAULT_LIVE_SETTINGS);
 
   useEffect(() => {
     api.info()
       .then(setInfo)
       .catch((e) => setInfoErr(e instanceof Error ? e.message : String(e)));
   }, []);
+
+  // Pick the slice of state that the SettingsPanel binds to, plus the
+  // mode-specific defaults its Reset button should restore.
+  const panelBinding = useMemo(() => {
+    switch (mode) {
+      case "file":
+        return {
+          value:    fileSettings,
+          onChange: setFileSettings,
+          defaults: DEFAULT_FILE_SETTINGS,
+          label:    "File",
+          chunking: true,
+        };
+      case "youtube":
+        return {
+          value:    ytSettings,
+          onChange: setYtSettings,
+          defaults: DEFAULT_FILE_SETTINGS,   // youtube downloads then processes as a file
+          label:    "YouTube",
+          chunking: true,
+        };
+      case "live":
+        return {
+          value:    liveSettings,
+          onChange: setLiveSettings,
+          defaults: DEFAULT_LIVE_SETTINGS,
+          label:    "Live",
+          chunking: false,                   // chunk_sec / overlap_sec unused live
+        };
+    }
+  }, [mode, fileSettings, ytSettings, liveSettings]);
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-10">
@@ -43,20 +83,26 @@ export default function ProcessPage() {
       {/* Two-column layout */}
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         {/* Left — main work area */}
-        <Tabs defaultValue="file" className="space-y-5">
+        <Tabs value={mode} onValueChange={(v) => setMode(v as Mode)} className="space-y-5">
           <TabsList className="grid grid-cols-3">
-            <TabsTrigger value="file"    className="gap-2"><Upload  className="h-4 w-4" />File</TabsTrigger>
-            <TabsTrigger value="youtube" className="gap-2"><Video className="h-4 w-4" />YouTube</TabsTrigger>
-            <TabsTrigger value="live"    className="gap-2"><Radio   className="h-4 w-4" />Live</TabsTrigger>
+            <TabsTrigger value="file"    className="gap-2"><Upload className="h-4 w-4" />File</TabsTrigger>
+            <TabsTrigger value="youtube" className="gap-2"><Video  className="h-4 w-4" />YouTube</TabsTrigger>
+            <TabsTrigger value="live"    className="gap-2"><Radio  className="h-4 w-4" />Live</TabsTrigger>
           </TabsList>
-          <TabsContent value="file">    <FileTab    settings={settings} /></TabsContent>
-          <TabsContent value="youtube"> <YouTubeTab settings={settings} /></TabsContent>
-          <TabsContent value="live">    <LiveTab    settings={settings} /></TabsContent>
+          <TabsContent value="file">    <FileTab    settings={fileSettings} /></TabsContent>
+          <TabsContent value="youtube"> <YouTubeTab settings={ytSettings}   /></TabsContent>
+          <TabsContent value="live">    <LiveTab    settings={liveSettings} /></TabsContent>
         </Tabs>
 
-        {/* Right — settings */}
+        {/* Right — settings (mode-bound) */}
         <aside>
-          <SettingsPanel value={settings} onChange={setSettings} />
+          <SettingsPanel
+            value={panelBinding.value}
+            onChange={panelBinding.onChange}
+            defaults={panelBinding.defaults}
+            modeLabel={panelBinding.label}
+            showChunking={panelBinding.chunking}
+          />
         </aside>
       </div>
     </div>

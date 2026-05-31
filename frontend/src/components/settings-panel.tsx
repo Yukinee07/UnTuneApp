@@ -7,18 +7,40 @@ import { Badge } from "@/components/ui/badge";
 import { Settings as SettingsIcon, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Settings } from "@/lib/types";
-import { DEFAULT_SETTINGS } from "@/lib/types";
+import { DEFAULT_FILE_SETTINGS } from "@/lib/types";
 
 type Props = {
   value: Settings;
   onChange: (next: Settings) => void;
   /** show chunk_sec / overlap_sec — only relevant for file/youtube modes */
   showChunking?: boolean;
+  /** mode-specific defaults the Reset button restores.  Defaults to file/CLI. */
+  defaults?: Settings;
+  /** short tag rendered in the header — "File", "YouTube", "Live" */
+  modeLabel?: string;
 };
 
-export function SettingsPanel({ value, onChange, showChunking = true }: Props) {
+export function SettingsPanel({
+  value,
+  onChange,
+  showChunking = true,
+  defaults = DEFAULT_FILE_SETTINGS,
+  modeLabel,
+}: Props) {
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) =>
     onChange({ ...value, [k]: v });
+
+  // Visual cue that the user has drifted from the defaults — Reset glows
+  // primary instead of muted so it's discoverable when it would actually
+  // do something.
+  const dirty =
+    value.mask_smooth !== defaults.mask_smooth ||
+    value.target_rms  !== defaults.target_rms  ||
+    value.gain_db     !== defaults.gain_db     ||
+    (showChunking && (
+      value.chunk_sec   !== defaults.chunk_sec ||
+      value.overlap_sec !== defaults.overlap_sec
+    ));
 
   return (
     <Card className="sticky top-20">
@@ -27,19 +49,28 @@ export function SettingsPanel({ value, onChange, showChunking = true }: Props) {
           <CardTitle className="flex items-center gap-2 text-base">
             <SettingsIcon className="h-4 w-4 text-primary" />
             Settings
+            {modeLabel && (
+              <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] font-normal uppercase tracking-wide text-muted-foreground">
+                {modeLabel}
+              </span>
+            )}
           </CardTitle>
           <Button
-            variant="ghost"
+            variant={dirty ? "secondary" : "ghost"}
             size="sm"
-            className="h-7 px-2 text-xs text-muted-foreground"
-            onClick={() => onChange(DEFAULT_SETTINGS)}
+            className="h-7 px-2 text-xs"
+            onClick={() => onChange(defaults)}
+            disabled={!dirty}
+            title={dirty ? "Restore defaults" : "Already at defaults"}
           >
             <RotateCcw className="mr-1 h-3 w-3" />
             Reset
           </Button>
         </div>
         <CardDescription className="text-xs">
-          Tune the separation. Defaults are sensible for the v13 checkpoint.
+          {modeLabel === "Live"
+            ? "Live monitoring defaults: smoothing on, levels normalised."
+            : "Clean offline defaults: raw mask, original dynamics, +3 dB lift."}
         </CardDescription>
       </CardHeader>
 
