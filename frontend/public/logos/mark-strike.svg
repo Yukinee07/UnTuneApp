@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Concept A: "Strike" — music note inside a soft ring with a confident diagonal slash.
+       Closest in spirit to HaramMute / forbidden-music icons but cleaner. -->
+  <defs>
+    <linearGradient id="strike-ring" x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0%"  stop-color="oklch(0.68 0.21 295)"/>
+      <stop offset="100%" stop-color="oklch(0.78 0.16 200)"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="29" stroke="url(#strike-ring)" stroke-width="3" opacity="0.9"/>
+  <!-- Eighth note: filled head + stem + flag -->
+  <g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="22" cy="42" rx="6" ry="4.5" transform="rotate(-18 22 42)"/>
+    <path d="M27 41 L27 16" stroke-width="3" fill="none"/>
+    <path d="M27 16 C 36 19, 39 27, 33.5 33" stroke-width="3" fill="none"/>
+  </g>
+  <!-- Slash — bold, slightly thicker than ring -->
+  <line x1="14" y1="50" x2="50" y2="14" stroke="oklch(0.68 0.24 25)" stroke-width="5" stroke-linecap="round"/>
+</svg>

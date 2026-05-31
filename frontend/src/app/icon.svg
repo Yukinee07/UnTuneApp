@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Favicon — same composition as mark-strike.svg, hand-tuned for tiny rendering.
+       Slightly thicker strokes so the slash + note still parse at 16×16. -->
+  <defs>
+    <linearGradient id="r" x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0%"   stop-color="oklch(0.68 0.21 295)"/>
+      <stop offset="100%" stop-color="oklch(0.78 0.16 200)"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="oklch(0.15 0.01 270)"/>
+  <circle cx="32" cy="32" r="24" stroke="url(#r)" stroke-width="3.5" fill="none"/>
+  <g fill="#fff" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="24" cy="40" rx="5" ry="4" transform="rotate(-18 24 40)"/>
+    <path d="M28 38 L28 18" fill="none"/>
+    <path d="M28 18 C 36 21, 38 28, 33 33" fill="none"/>
+  </g>
+  <line x1="16" y1="48" x2="48" y2="16" stroke="oklch(0.68 0.24 25)" stroke-width="6" stroke-linecap="round"/>
+</svg>
