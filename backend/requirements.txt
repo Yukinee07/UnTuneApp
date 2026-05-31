@@ -1,0 +1,23 @@
+# ─── Inference ─────────────────────────────────────────────────────────────
+# IMPORTANT: torch with CUDA must be installed FIRST and SEPARATELY,
+# because pip will not pick the CUDA wheel from PyPI by default.
+# Install command (run once, before `pip install -r requirements.txt`):
+#
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+#
+# Then run `pip install -r requirements.txt` for the rest.
+torchaudio>=2.1.0
+numpy>=1.24.0
+
+# Audio I/O
+soundfile>=0.12.0
+sounddevice>=0.4.6
+soundcard>=0.4.3       # Windows WASAPI / VB-Cable, used by stream.py live mode
+
+# ─── Web backend ───────────────────────────────────────────────────────────
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0      # ASGI server (the [standard] extras give us websockets + watchfiles)
+python-multipart>=0.0.9        # multipart/form-data parsing (file uploads)
+
+# ─── YouTube ingestion ─────────────────────────────────────────────────────
+yt-dlp>=2024.1.0
