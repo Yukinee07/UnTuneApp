@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Concept C: "Isolate" — a microphone in the centre, with one music note
+       fading away to each side.  Reads as "we surround you with the vocals,
+       music drifts off".  Friendliest / most musical of the four. -->
+
+  <!-- Faded music notes drifting outward -->
+  <g opacity="0.45" stroke="oklch(0.68 0.21 295)" stroke-width="2.5" fill="oklch(0.68 0.21 295)">
+    <!-- Left fading note -->
+    <ellipse cx="9"  cy="22" rx="3" ry="2.4" transform="rotate(-18 9 22)"/>
+    <path d="M12 21 L12 9" fill="none"/>
+    <!-- Right fading note -->
+    <ellipse cx="55" cy="42" rx="3" ry="2.4" transform="rotate(-18 55 42)" opacity="0.7"/>
+    <path d="M58 41 L58 29" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- Central microphone — solid, sharp, the focal point -->
+  <g stroke="currentColor" stroke-width="3" fill="oklch(0.68 0.21 295)">
+    <rect x="26" y="14" width="12" height="22" rx="6"/>
+  </g>
+  <g stroke="currentColor" stroke-width="3" fill="none">
+    <path d="M20 30 C 20 38, 26 44, 32 44 C 38 44, 44 38, 44 30"/>
+    <line x1="32" y1="44" x2="32" y2="54"/>
+    <line x1="24" y1="54" x2="40" y2="54"/>
+  </g>
+
+  <!-- Subtle sound highlight on the mic -->
+  <circle cx="32" cy="22" r="1.5" fill="oklch(0.78 0.16 200)"/>
+</svg>
