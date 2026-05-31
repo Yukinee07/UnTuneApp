@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export function SiteNav() {
@@ -37,7 +38,8 @@ export function SiteNav() {
               </Link>
             );
           })}
-          <Button render={<Link href="/process" />} size="sm" className="ml-2">
+          <ThemeToggle />
+          <Button render={<Link href="/process" />} size="sm" className="ml-1">
             Open Workspace
           </Button>
         </nav>

@@ -119,19 +119,25 @@ function MagicSection() {
             </div>
             <div className="flex h-24 items-end gap-1">
               {Array.from({ length: 48 }).map((_, i) => {
-                const a = Math.abs(Math.sin(i * 0.42)) * 60 + 20;
-                const b = Math.abs(Math.cos(i * 0.55 + 1)) * 40 + 10;
+                // Mixture bars are slightly taller than vocal bars — more
+                // energy = more amplitude.  The banded gradient (cyan→violet
+                // alternating) reads as "multiple stems layered together".
+                const h = Math.abs(Math.sin(i * 0.42 + Math.cos(i * 0.21))) * 60 + 30;
                 return (
-                  <div key={i} className="flex-1 space-y-0.5">
-                    <div
-                      className="eq-bar rounded-sm bg-accent/80"
-                      style={{ height: `${b}%`, animationDelay: `${(i * 0.06) % 1.2}s` }}
-                    />
-                    <div
-                      className="eq-bar rounded-sm bg-primary/80"
-                      style={{ height: `${a}%`, animationDelay: `${(i * 0.04 + 0.3) % 1.2}s` }}
-                    />
-                  </div>
+                  <div
+                    key={i}
+                    className="eq-bar flex-1 rounded-sm"
+                    style={{
+                      height: `${h}%`,
+                      animationDelay: `${(i * 0.06) % 1.2}s`,
+                      background:
+                        "linear-gradient(to top, " +
+                        "oklch(0.78 0.16 200) 0%, oklch(0.78 0.16 200) 22%, " +
+                        "oklch(0.68 0.21 295) 22%, oklch(0.68 0.21 295) 52%, " +
+                        "oklch(0.78 0.16 200) 52%, oklch(0.78 0.16 200) 75%, " +
+                        "oklch(0.68 0.21 295) 75%, oklch(0.68 0.21 295) 100%)",
+                    }}
+                  />
                 );
               })}
             </div>
