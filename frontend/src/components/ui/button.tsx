@@ -44,12 +44,26 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  render,
+  nativeButton,
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  // Base UI's Button defaults nativeButton={true} (expects a real <button> under
+  // the hood).  When we pass `render={<Link/>}` or `render={<a/>}` to make the
+  // button behave as a navigation link, that assumption is wrong and Base UI
+  // logs a console warning.  Auto-flip nativeButton to false when a `render`
+  // prop is supplied without an explicit nativeButton — that covers every
+  // <Button render={<Link .../>}> usage in the app.  Users can still override
+  // explicitly when they want non-default behaviour.
+  const resolvedNativeButton =
+    nativeButton ?? (render === undefined)
+
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      render={render}
+      nativeButton={resolvedNativeButton}
       {...props}
     />
   )
