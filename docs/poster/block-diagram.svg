@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 480"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!--
+    UnTune — Block Diagram (landscape, poster-format)
+
+    Three colour-coded zones flowing left → right:
+      INPUT (cyan)  →  HSTasNetVocals v12 (violet)  →  OUTPUT (rose)
+
+    Designed to fit the same poster box as the original wire-frame
+    reference, with extra internal labels for the model so a reader
+    can see exactly what's inside the central black-box.
+  -->
+
+  <defs>
+    <linearGradient id="zone-in"  x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#dbe8ff"/>
+    </linearGradient>
+    <linearGradient id="zone-proc" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f5efff"/>
+      <stop offset="1" stop-color="#e6d8ff"/>
+    </linearGradient>
+    <linearGradient id="zone-out" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffeef2"/>
+      <stop offset="1" stop-color="#ffd2dd"/>
+    </linearGradient>
+
+    <marker id="arr" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arr-thin" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4b5563"/>
+    </marker>
+
+    <style>
+      .zone-lbl { font-size: 11px; font-weight: 800; letter-spacing: 3.5px; }
+      .box-ttl  { font-size: 13px; font-weight: 700; fill: #1f2937; }
+      .box-sub  { font-size: 10.5px; fill: #4b5563; }
+      .box-spec { font-size: 9.5px;  fill: #6b7280; font-style: italic; }
+      .big-ttl  { font-size: 15px; font-weight: 800; fill: #5b21b6; }
+    </style>
+  </defs>
+
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- ZONE 1 — INPUT                                                 -->
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <rect x="20" y="40" width="260" height="420" rx="14"
+        fill="url(#zone-in)" stroke="#3b82f6" stroke-width="1.8"/>
+  <text x="150" y="68" text-anchor="middle" class="zone-lbl" fill="#1e40af">INPUT</text>
+
+  <!-- Apps (Spotify / YouTube / etc.) -->
+  <rect x="40" y="90" width="220" height="80" rx="9" fill="white" stroke="#3b82f6" stroke-width="1.4"/>
+  <text x="150" y="115" text-anchor="middle" class="box-ttl">App audio sources</text>
+  <text x="150" y="135" text-anchor="middle" class="box-sub">Spotify · YouTube · Discord</text>
+  <text x="150" y="151" text-anchor="middle" class="box-sub">games · podcasts · video calls</text>
+  <text x="150" y="166" text-anchor="middle" class="box-spec">stereo @ 44.1 kHz</text>
+
+  <!-- VB-Cable -->
+  <rect x="40" y="195" width="220" height="80" rx="9" fill="white" stroke="#3b82f6" stroke-width="1.4"/>
+  <text x="150" y="220" text-anchor="middle" class="box-ttl">VB-Cable</text>
+  <text x="150" y="238" text-anchor="middle" class="box-sub">virtual audio driver</text>
+  <text x="150" y="254" text-anchor="middle" class="box-sub">(Windows default output)</text>
+  <text x="150" y="270" text-anchor="middle" class="box-spec">intercepts all system audio</text>
+
+  <!-- Reader thread -->
+  <rect x="40" y="298" width="220" height="80" rx="9" fill="white" stroke="#3b82f6" stroke-width="1.4"/>
+  <text x="150" y="323" text-anchor="middle" class="box-ttl">Reader thread</text>
+  <text x="150" y="341" text-anchor="middle" class="box-sub">captures 8192-sample chunks</text>
+  <text x="150" y="357" text-anchor="middle" class="box-sub">drops oldest on queue full</text>
+  <text x="150" y="373" text-anchor="middle" class="box-spec">186 ms per chunk</text>
+
+  <!-- Vertical flow inside zone -->
+  <line x1="150" y1="170" x2="150" y2="195" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <line x1="150" y1="275" x2="150" y2="298" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+
+  <!-- chunk size label between zones -->
+  <text x="305" y="225" font-size="9.5" fill="#6b7280" font-style="italic" text-anchor="middle">tensor</text>
+  <text x="305" y="237" font-size="9.5" fill="#6b7280" font-style="italic" text-anchor="middle">(2, 8192)</text>
+
+  <!-- Arrow to processing -->
+  <path d="M280,250 L325,250" fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- ZONE 2 — HSTasNetVocals (processing)                           -->
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <rect x="330" y="40" width="750" height="420" rx="14"
+        fill="url(#zone-proc)" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="350" y="68" class="zone-lbl" fill="#5b21b6">HSTASNETVOCALS  v12</text>
+  <text x="1060" y="68" text-anchor="end" class="box-spec" fill="#5b21b6">30 M params  ·  CUDA</text>
+
+  <!-- ─── Encoders (left column) ─────────────────────────────────── -->
+  <rect x="350" y="100" width="180" height="80" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.3"/>
+  <text x="440" y="124" text-anchor="middle" class="box-ttl">STFT encoder</text>
+  <text x="440" y="143" text-anchor="middle" class="box-sub">spectrogram view</text>
+  <text x="440" y="159" text-anchor="middle" class="box-spec">n_fft=1024 · hop=512</text>
+  <text x="440" y="173" text-anchor="middle" class="box-spec">→ 513 freq bins</text>
+
+  <rect x="350" y="300" width="180" height="80" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.3"/>
+  <text x="440" y="324" text-anchor="middle" class="box-ttl">Conv encoder</text>
+  <text x="440" y="343" text-anchor="middle" class="box-sub">learned-basis view</text>
+  <text x="440" y="359" text-anchor="middle" class="box-spec">n_basis=1024</text>
+  <text x="440" y="373" text-anchor="middle" class="box-spec">kernel=1024 stride=512</text>
+
+  <!-- ─── 5× LSTM stack (centre) ─────────────────────────────────── -->
+  <rect x="580" y="170" width="200" height="140" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="680" y="194" text-anchor="middle" class="big-ttl">5× LSTM stack</text>
+  <text x="680" y="215" text-anchor="middle" class="box-sub">causal · hidden state</text>
+  <text x="680" y="227" text-anchor="middle" class="box-sub">carried across chunks</text>
+  <line x1="610" y1="237" x2="750" y2="237" stroke="#a78bfa" stroke-width="0.7"/>
+  <text x="680" y="252" text-anchor="middle" class="box-spec">spec_lstm    h=500</text>
+  <text x="680" y="265" text-anchor="middle" class="box-spec">conv_lstm    h=500</text>
+  <text x="680" y="278" text-anchor="middle" class="box-spec">combined_lstm  h=1000</text>
+  <text x="680" y="291" text-anchor="middle" class="box-spec">post_spec / post_conv</text>
+  <text x="680" y="304" text-anchor="middle" class="box-spec">each = 2× LSTM + LN + skip</text>
+
+  <!-- Arrows: encoders → LSTM stack -->
+  <path d="M530,140 L580,200" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <path d="M530,340 L580,280" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+
+  <!-- ─── Mask head (highlighted) ────────────────────────────────── -->
+  <rect x="820" y="130" width="220" height="90" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="930" y="155" text-anchor="middle" class="box-ttl" fill="#92400e">Complex mask head</text>
+  <text x="930" y="174" text-anchor="middle" class="box-sub">magnitude (softplus)</text>
+  <text x="930" y="189" text-anchor="middle" class="box-sub">+ phase rotation (cos/sin)</text>
+  <text x="930" y="206" text-anchor="middle" class="box-spec">v12 — fixes mask &gt; 1.0 cases</text>
+
+  <!-- ─── Decoders ───────────────────────────────────────────────── -->
+  <rect x="820" y="240" width="220" height="80" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.3"/>
+  <text x="930" y="264" text-anchor="middle" class="box-ttl">ISTFT + Conv-T decoders</text>
+  <text x="930" y="283" text-anchor="middle" class="box-sub">complex spec → wav_spec</text>
+  <text x="930" y="298" text-anchor="middle" class="box-sub">conv features → wav_conv</text>
+  <text x="930" y="314" text-anchor="middle" class="box-spec">windowed transpose-conv</text>
+
+  <!-- Sum -->
+  <circle cx="930" cy="375" r="22" fill="#7c3aed" stroke="white" stroke-width="2"/>
+  <text x="930" y="382" text-anchor="middle" font-size="22" font-weight="700" fill="white">+</text>
+  <text x="930" y="415" text-anchor="middle" class="box-sub" font-weight="600">vocals = wav_spec + wav_conv</text>
+
+  <!-- Arrows: LSTM → mask → decoders → sum -->
+  <path d="M780,210 L820,170" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <path d="M780,275 L820,275" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <path d="M930,220 L930,240" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <path d="M930,320 L930,353" fill="none" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+
+  <!-- Arrow leaving to output zone -->
+  <path d="M955,375 L1085,375 L1085,250 L1125,250" fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- ZONE 3 — OUTPUT                                                -->
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <rect x="1130" y="40" width="250" height="420" rx="14"
+        fill="url(#zone-out)" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="1255" y="68" text-anchor="middle" class="zone-lbl" fill="#9f1239">OUTPUT</text>
+
+  <!-- Post-processing -->
+  <rect x="1145" y="90" width="220" height="92" rx="9" fill="white" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="1255" y="115" text-anchor="middle" class="box-ttl">Post-processing</text>
+  <text x="1255" y="133" text-anchor="middle" class="box-sub">cross-fade (1024 samples)</text>
+  <text x="1255" y="148" text-anchor="middle" class="box-sub">causal mask smoother (k=5)</text>
+  <text x="1255" y="163" text-anchor="middle" class="box-sub">RMS auto-leveller</text>
+  <text x="1255" y="178" text-anchor="middle" class="box-spec">kills musical-noise artefacts</text>
+
+  <!-- Writer thread -->
+  <rect x="1145" y="200" width="220" height="78" rx="9" fill="white" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="1255" y="225" text-anchor="middle" class="box-ttl">Writer thread</text>
+  <text x="1255" y="243" text-anchor="middle" class="box-sub">WASAPI player</text>
+  <text x="1255" y="259" text-anchor="middle" class="box-sub">auto-reconnect on errors</text>
+  <text x="1255" y="273" text-anchor="middle" class="box-spec">(Bluetooth · device unplug)</text>
+
+  <!-- Speakers -->
+  <rect x="1145" y="298" width="220" height="80" rx="9" fill="white" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="1255" y="328" text-anchor="middle" class="box-ttl">Speakers / Headphones</text>
+  <text x="1255" y="350" text-anchor="middle" class="box-sub">user hears vocals only</text>
+  <text x="1255" y="367" text-anchor="middle" class="box-spec">end-to-end latency ~ 190 ms</text>
+
+  <line x1="1255" y1="182" x2="1255" y2="200" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+  <line x1="1255" y1="278" x2="1255" y2="298" stroke="#1f2937" stroke-width="1.7" marker-end="url(#arr-thin)"/>
+
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- Bottom caption (specs strip)                                   -->
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <text x="700" y="463" text-anchor="middle" font-size="10.5" fill="#6b7280">
+    Trained on MUSDB18-HQ (150 songs · 5 stems) · v13 best.pt · val_loss −38.28 @ epoch 43
+  </text>
+</svg>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1900"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!--
+    UnTune — Runtime Flowchart  (v2, decluttered)
+
+    Layout principles:
+      • Each lane flows top→bottom with no path crossing itself.
+      • YES branches go RIGHT (red), NO branches go LEFT (green).
+      • Loop-back arrows live OUTSIDE the lanes (in the page margins)
+        so they never overlap the content.
+      • Cross-lane data flow only happens via the two queues — drawn as
+        pill labels on horizontal connector arrows.
+      • Generous spacing (≥ 80 px between boxes) so the diagram stays
+        readable when shrunk to fit a poster box.
+  -->
+
+  <defs>
+    <marker id="arr"      viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arr-red"  viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L12,6 L0,12 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-grn"  viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L12,6 L0,12 z" fill="#059669"/>
+    </marker>
+    <style>
+      .proc-body  { font-size: 13px;   fill: #1f2937; }
+      .proc-sub   { font-size: 11px;   fill: #6b7280; }
+      .proc-bold  { font-weight: 700; }
+      .diamond-t  { font-size: 13px;   font-weight: 700; fill: #1f2937; }
+      .yn-lbl     { font-size: 11.5px; font-weight: 700; }
+      .yn-y       { fill: #dc2626; }
+      .yn-n       { fill: #059669; }
+      .queue-t    { font-size: 11.5px; font-weight: 700; fill: #1f2937; font-family: 'Courier New', monospace; }
+      .lane-lbl   { font-size: 14px;   font-weight: 700; letter-spacing: 3px; }
+    </style>
+  </defs>
+
+  <!-- ── Title ───────────────────────────────────────────────────── -->
+  <text x="800" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#1f2937">
+    UnTune — Runtime Flowchart
+  </text>
+  <text x="800" y="69" text-anchor="middle" font-size="13" fill="#6b7280">
+    3-thread pipeline · reader → model → writer · decoupled by bounded queues
+  </text>
+
+  <!-- ── INIT (above the three lanes) ─────────────────────────────── -->
+  <!-- START oval -->
+  <ellipse cx="800" cy="130" rx="85" ry="26" fill="#1f2937"/>
+  <text x="800" y="137" text-anchor="middle" font-size="14" font-weight="700" fill="white">START</text>
+
+  <!-- Load model -->
+  <rect x="600" y="180" width="400" height="56" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="203" text-anchor="middle" class="proc-body proc-bold">Load v13 best.pt on CUDA</text>
+  <text x="800" y="222" text-anchor="middle" class="proc-sub">ModelService.load() · 30 M params → VRAM</text>
+
+  <!-- Open VB-Cable + spawn -->
+  <rect x="600" y="260" width="400" height="56" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="283" text-anchor="middle" class="proc-body proc-bold">Open VB-Cable + spawn 3 threads</text>
+  <text x="800" y="302" text-anchor="middle" class="proc-sub">create in_q, out_q  (maxsize = 4 each)</text>
+
+  <line x1="800" y1="156" x2="800" y2="180" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="800" y1="236" x2="800" y2="260" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Fan-out arrows from the spawn box to each lane top -->
+  <path d="M700,316 Q700,360 270,410" fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M800,316 L800,410"         fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M900,316 Q900,360 1320,410" fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ── Lane backgrounds ─────────────────────────────────────────── -->
+  <rect x="40"   y="370" width="450" height="1480" rx="14" fill="#fff6e8" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="265"  y="400" text-anchor="middle" class="lane-lbl" fill="#92400e">READER THREAD</text>
+
+  <rect x="560"  y="370" width="480" height="1480" rx="14" fill="#f3edff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="800"  y="400" text-anchor="middle" class="lane-lbl" fill="#5b21b6">MAIN THREAD (GPU)</text>
+
+  <rect x="1110" y="370" width="450" height="1480" rx="14" fill="#ffeef2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="1335" y="400" text-anchor="middle" class="lane-lbl" fill="#9f1239">WRITER THREAD</text>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- READER LANE  (center x = 265)                                    -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+
+  <!-- Read 8192 samples -->
+  <rect x="115" y="430" width="300" height="58" rx="10" fill="white" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="265" y="454" text-anchor="middle" class="proc-body proc-bold">Read 8192 samples</text>
+  <text x="265" y="472" text-anchor="middle" class="proc-sub">soundcard.recorder.record(8192)</text>
+
+  <!-- To stereo tensor -->
+  <rect x="115" y="528" width="300" height="48" rx="10" fill="white" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="265" y="557" text-anchor="middle" class="proc-body proc-bold">→ torch tensor (2, 8192)</text>
+  <line x1="265" y1="488" x2="265" y2="528" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: in_q full? -->
+  <g transform="translate(265,670)">
+    <polygon points="0,-60 140,0 0,60 -140,0" fill="white" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="0" y="-5" text-anchor="middle" class="diamond-t">in_q full?</text>
+    <text x="0" y="13" text-anchor="middle" class="proc-sub">(maxsize = 4)</text>
+  </g>
+  <line x1="265" y1="576" x2="265" y2="610" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Branch labels right next to diamond exits -->
+  <text x="180" y="745" class="yn-lbl yn-n">NO</text>
+  <text x="345" y="745" class="yn-lbl yn-y">YES</text>
+
+  <!-- NO → in_q.put(chunk) (left) -->
+  <rect x="55" y="780" width="200" height="55" rx="10" fill="#e8fff4" stroke="#059669" stroke-width="1.5"/>
+  <text x="155" y="804" text-anchor="middle" class="proc-body proc-bold" fill="#065f46">in_q.put(chunk)</text>
+  <text x="155" y="822" text-anchor="middle" class="proc-sub">non-blocking</text>
+  <path d="M210,720 Q160,750 155,780" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+
+  <!-- YES → Drop chunk (right) -->
+  <rect x="290" y="780" width="170" height="55" rx="10" fill="#fff1f3" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="375" y="804" text-anchor="middle" class="proc-body proc-bold" fill="#9f1239">Drop chunk</text>
+  <text x="375" y="822" text-anchor="middle" class="proc-sub">keep latency tight</text>
+  <path d="M325,720 Q375,750 375,780" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <!-- Reader loop-back: out the LEFT side, around the lane, back to top -->
+  <path d="M155,835 L155,880 L20,880 L20,455 L115,455" fill="none" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+  <path d="M375,835 L375,860 L155,860 L155,880"     fill="none" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="30" y="650" font-size="10" fill="#6b7280" transform="rotate(-90 30 650)">loop next chunk</text>
+
+  <!-- Cross-lane: in_q.put RIGHT → in_q queue → main lane "Get from in_q" -->
+  <path d="M255,808 L520,808" fill="none" stroke="#1f2937" stroke-width="2"/>
+  <!-- in_q pill in the gap -->
+  <rect x="455" y="794" width="80" height="28" rx="14" fill="#f3f4f6" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="495" y="813" text-anchor="middle" class="queue-t">in_q</text>
+  <!-- continues up to Get from in_q in main lane -->
+  <path d="M535,808 L555,808 L555,460 L600,460" fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- MAIN LANE  (center x = 800)                                      -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+
+  <!-- Get from in_q -->
+  <rect x="600" y="430" width="400" height="58" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="454" text-anchor="middle" class="proc-body proc-bold">Get chunk from in_q</text>
+  <text x="800" y="472" text-anchor="middle" class="proc-sub">blocks until a chunk is ready</text>
+
+  <!-- STFT + Conv encoders -->
+  <rect x="600" y="520" width="400" height="58" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="544" text-anchor="middle" class="proc-body proc-bold">STFT + Conv encoders</text>
+  <text x="800" y="562" text-anchor="middle" class="proc-sub">two parallel views of the chunk</text>
+  <line x1="800" y1="488" x2="800" y2="520" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 5 LSTM blocks (emphasised) -->
+  <rect x="600" y="610" width="400" height="72" rx="10" fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="800" y="637" text-anchor="middle" class="proc-body proc-bold" fill="#5b21b6" font-size="14">5 stacked LSTM blocks</text>
+  <text x="800" y="656" text-anchor="middle" class="proc-sub">spec · conv · combined · post-spec · post-conv</text>
+  <text x="800" y="672" text-anchor="middle" class="proc-sub" font-style="italic">(hidden state carried across chunks)</text>
+  <line x1="800" y1="578" x2="800" y2="610" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Predict mask (highlighted) -->
+  <rect x="600" y="714" width="400" height="64" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="800" y="738" text-anchor="middle" class="proc-body proc-bold" fill="#92400e" font-size="14">Predict complex mask</text>
+  <text x="800" y="757" text-anchor="middle" class="proc-sub">softplus(magnitude) + cos/sin phase rotation</text>
+  <text x="800" y="772" text-anchor="middle" class="proc-sub">22 % of bins need mask &gt; 1.0 — sigmoid couldn't do this</text>
+  <line x1="800" y1="682" x2="800" y2="714" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Mask smoothing -->
+  <rect x="600" y="810" width="400" height="48" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="838" text-anchor="middle" class="proc-body proc-bold">Causal mask smoothing  (k = 5)</text>
+  <line x1="800" y1="778" x2="800" y2="810" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ISTFT + Conv-T -->
+  <rect x="600" y="890" width="400" height="58" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="914" text-anchor="middle" class="proc-body proc-bold">ISTFT + Conv-T decoders</text>
+  <text x="800" y="932" text-anchor="middle" class="proc-sub">→ vocals tensor (2, 8192)</text>
+  <line x1="800" y1="858" x2="800" y2="890" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Cross-fade -->
+  <rect x="600" y="980" width="400" height="48" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="1008" text-anchor="middle" class="proc-body proc-bold">Cross-fade with previous tail</text>
+  <line x1="800" y1="948" x2="800" y2="980" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Auto-level + gain -->
+  <rect x="600" y="1060" width="400" height="48" rx="10" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="800" y="1088" text-anchor="middle" class="proc-body proc-bold">Auto-level (RMS) + gain</text>
+  <line x1="800" y1="1028" x2="800" y2="1060" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: out_q full? -->
+  <g transform="translate(800,1200)">
+    <polygon points="0,-60 140,0 0,60 -140,0" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="0" y="-5" text-anchor="middle" class="diamond-t">out_q full?</text>
+    <text x="0" y="13" text-anchor="middle" class="proc-sub">(writer slow)</text>
+  </g>
+  <line x1="800" y1="1108" x2="800" y2="1140" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <text x="710" y="1275" class="yn-lbl yn-n">NO</text>
+  <text x="880" y="1275" class="yn-lbl yn-y">YES</text>
+
+  <!-- NO → put to out_q -->
+  <rect x="600" y="1310" width="220" height="55" rx="10" fill="#e8fff4" stroke="#059669" stroke-width="1.5"/>
+  <text x="710" y="1334" text-anchor="middle" class="proc-body proc-bold" fill="#065f46">out_q.put(vocals)</text>
+  <text x="710" y="1352" text-anchor="middle" class="proc-sub">non-blocking</text>
+  <path d="M730,1250 Q710,1280 710,1310" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+
+  <!-- YES → DropReporter -->
+  <rect x="850" y="1310" width="180" height="55" rx="10" fill="#fff1f3" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="940" y="1334" text-anchor="middle" class="proc-body proc-bold" fill="#9f1239">DropReporter.add()</text>
+  <text x="940" y="1352" text-anchor="middle" class="proc-sub">log + skip</text>
+  <path d="M870,1250 Q940,1280 940,1310" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <!-- Main loop-back: out the LEFT, around lane, back up to "Get from in_q" -->
+  <path d="M710,1365 L710,1400 L580,1400 L580,460 L600,460" fill="none" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+  <path d="M940,1365 L940,1390 L710,1390 L710,1400"        fill="none" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="570" y="900" font-size="10" fill="#6b7280" transform="rotate(-90 570 900)">loop next chunk</text>
+
+  <!-- Cross-lane: out_q.put RIGHT → out_q queue → writer's "Get from out_q" -->
+  <path d="M820,1338 L1075,1338" fill="none" stroke="#1f2937" stroke-width="2"/>
+  <rect x="1010" y="1324" width="90" height="28" rx="14" fill="#f3f4f6" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="1055" y="1343" text-anchor="middle" class="queue-t">out_q</text>
+  <!-- continues up to "Get from out_q" in writer lane -->
+  <path d="M1100,1338 L1085,1338 L1085,545 L1110,545" fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- WRITER LANE  (center x = 1335)                                   -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+
+  <!-- Open WASAPI player -->
+  <rect x="1175" y="430" width="320" height="58" rx="10" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="1335" y="454" text-anchor="middle" class="proc-body proc-bold">Open WASAPI player</text>
+  <text x="1335" y="472" text-anchor="middle" class="proc-sub">on real speakers / headphones</text>
+
+  <!-- Get from out_q -->
+  <rect x="1175" y="515" width="320" height="58" rx="10" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="1335" y="539" text-anchor="middle" class="proc-body proc-bold">Get from out_q</text>
+  <text x="1335" y="557" text-anchor="middle" class="proc-sub">timeout 300 ms</text>
+  <line x1="1335" y1="488" x2="1335" y2="515" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: out_q empty? -->
+  <g transform="translate(1335,665)">
+    <polygon points="0,-60 140,0 0,60 -140,0" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="0" y="-5" text-anchor="middle" class="diamond-t">out_q empty?</text>
+    <text x="0" y="13" text-anchor="middle" class="proc-sub">(model slow)</text>
+  </g>
+  <line x1="1335" y1="573" x2="1335" y2="605" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <text x="1240" y="740" class="yn-lbl yn-n">NO</text>
+  <text x="1415" y="740" class="yn-lbl yn-y">YES</text>
+
+  <!-- NO → play chunk -->
+  <rect x="1135" y="775" width="200" height="55" rx="10" fill="#e8fff4" stroke="#059669" stroke-width="1.5"/>
+  <text x="1235" y="799" text-anchor="middle" class="proc-body proc-bold" fill="#065f46">player.play(chunk)</text>
+  <text x="1235" y="817" text-anchor="middle" class="proc-sub">→ speakers</text>
+  <path d="M1275,715 Q1235,745 1235,775" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+
+  <!-- YES → play silence -->
+  <rect x="1370" y="775" width="170" height="55" rx="10" fill="#fff1f3" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="1455" y="799" text-anchor="middle" class="proc-body proc-bold" fill="#9f1239">Play silence</text>
+  <text x="1455" y="817" text-anchor="middle" class="proc-sub">prevent underrun</text>
+  <path d="M1395,715 Q1455,745 1455,775" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <!-- Merge both branches into "WASAPI error?" check -->
+  <path d="M1235,830 L1235,870 L1335,870" fill="none" stroke="#1f2937" stroke-width="2"/>
+  <path d="M1455,830 L1455,870 L1335,870" fill="none" stroke="#1f2937" stroke-width="2"/>
+  <line x1="1335" y1="870" x2="1335" y2="900" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: WASAPI error? -->
+  <g transform="translate(1335,960)">
+    <polygon points="0,-60 140,0 0,60 -140,0" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="0" y="-5" text-anchor="middle" class="diamond-t">WASAPI error?</text>
+    <text x="0" y="13" text-anchor="middle" class="proc-sub">(BT switch · unplug)</text>
+  </g>
+
+  <text x="1240" y="1035" class="yn-lbl yn-n">NO</text>
+  <text x="1415" y="1035" class="yn-lbl yn-y">YES</text>
+
+  <!-- YES → Reconnect -->
+  <rect x="1370" y="1070" width="170" height="62" rx="10" fill="#fff1f3" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="1455" y="1094" text-anchor="middle" class="proc-body proc-bold" fill="#9f1239">Reconnect</text>
+  <text x="1455" y="1112" text-anchor="middle" class="proc-sub">exp. backoff 0.5 → 5 s</text>
+  <text x="1455" y="1127" text-anchor="middle" class="proc-sub">drain stale chunks</text>
+  <path d="M1395,1010 Q1455,1040 1455,1070" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <!-- Reconnect → loops back to "Open WASAPI player" (far right margin) -->
+  <path d="M1545,1100 L1580,1100 L1580,460 L1495,460" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr-red)"/>
+
+  <!-- NO → loops back to "Get from out_q" -->
+  <path d="M1275,1010 Q1100,1010 1100,545 L1175,545" fill="none" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+
+  <!-- Terminal: Speakers oval (the final destination of audio) -->
+  <line x1="1235" y1="830" x2="1235" y2="1230" stroke="#059669" stroke-width="1.5" stroke-dasharray="2 3"/>
+  <ellipse cx="1335" cy="1265" rx="130" ry="28" fill="#1f2937"/>
+  <text x="1335" y="1272" text-anchor="middle" font-size="14" font-weight="700" fill="white">▶ Speakers (user)</text>
+  <text x="1335" y="1310" text-anchor="middle" font-size="11" fill="#6b7280" font-style="italic">audio reaches the user here</text>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- LEGEND  (bottom strip)                                           -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <g transform="translate(40,1810)" font-size="12" fill="#1f2937">
+    <text x="0" y="0" font-weight="700">Legend</text>
+
+    <ellipse cx="100" cy="-4" rx="35" ry="12" fill="#1f2937"/>
+    <text x="100" y="-1" text-anchor="middle" font-size="10" fill="white" font-weight="700">start/end</text>
+
+    <rect x="160" y="-16" width="90" height="24" rx="6" fill="white" stroke="#4b5563"/>
+    <text x="205" y="0" text-anchor="middle" font-size="11">process</text>
+
+    <polygon points="300,-4 340,-22 380,-4 340,14" fill="white" stroke="#4b5563"/>
+    <text x="340" y="-1" text-anchor="middle" font-size="11">decision</text>
+
+    <rect x="430" y="-12" width="60" height="18" rx="9" fill="#f3f4f6" stroke="#4b5563"/>
+    <text x="460" y="0" text-anchor="middle" font-size="10" font-family="'Courier New', monospace">queue</text>
+
+    <line x1="540" y1="-4" x2="610" y2="-4" stroke="#1f2937" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="625" y="0" font-size="11">flow</text>
+
+    <line x1="700" y1="-4" x2="770" y2="-4" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="785" y="0" font-size="11">loop / reconnect</text>
+
+    <line x1="950" y1="-4" x2="1010" y2="-4" stroke="#059669" stroke-width="2" marker-end="url(#arr-grn)"/>
+    <text x="1020" y="0" font-size="11" fill="#065f46">NO  (happy path)</text>
+
+    <line x1="1190" y1="-4" x2="1250" y2="-4" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+    <text x="1260" y="0" font-size="11" fill="#9f1239">YES  (drop / error)</text>
+  </g>
+</svg>
