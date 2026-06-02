@@ -51,11 +51,6 @@ function Hero() {
       <div className="absolute inset-0 noise pointer-events-none" />
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-28 text-center md:py-44">
-        <Badge variant="outline" className="mb-7 gap-1.5 border-primary/40 bg-primary/5 text-primary backdrop-blur-sm">
-          <Sparkles className="h-3 w-3" />
-          HS-TasNet v12 · running on your GPU
-        </Badge>
-
         <h1 className="text-glow-primary max-w-5xl text-balance text-6xl font-bold leading-[0.98] tracking-[-0.025em] md:text-8xl lg:text-[6.5rem]">
           The internet is loud.{" "}
           <span className="text-gradient-violet-cyan">Mute the&nbsp;</span>
@@ -300,7 +295,15 @@ function StepCard({
 function SpecsStrip() {
   return (
     <section className="border-y border-border/60 bg-secondary/20">
-      <div className="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-lg border border-border/40 my-12 md:grid-cols-4 mx-4">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-4 text-center">
+        <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          Resources used for training
+        </h2>
+        <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+          The hardware, model, and dataset behind the current checkpoint.
+        </p>
+      </div>
+      <div className="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-lg border border-border/40 mt-8 mb-12 md:grid-cols-4 mx-4">
         <Stat icon={<Zap        className="h-4 w-4 text-primary" />} label="End-to-end latency" value="~190 ms" note="Auto-levelling on, 8192-sample blocks" />
         <Stat icon={<Cpu        className="h-4 w-4 text-primary" />} label="GPU"               value="RTX 4060" note="CUDA 12.8 · ~27 ms per chunk" />
         <Stat icon={<AudioLines className="h-4 w-4 text-primary" />} label="Model"             value="30M params" note="v13 best.pt · val_loss −38.28 @ epoch 43" />
@@ -332,14 +335,13 @@ function Stat({
 function ModesSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-24">
-      <div className="mb-14 text-center">
-        <Badge variant="secondary" className="mb-4">Use it your way</Badge>
+      <div className="mb-14 max-w-3xl">
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-          Three ways in. <span className="text-gradient-violet-cyan">One way out.</span>
+          Three ways to feed it audio.
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Drop a file, paste a URL, or pipe live audio from anywhere on your
-          system. All three flows hit the same model on the same GPU.
+        <p className="mt-4 max-w-xl text-muted-foreground">
+          A file from your disk, a YouTube link, or whatever is currently
+          playing on your laptop. Same model handles all three.
         </p>
       </div>
 
