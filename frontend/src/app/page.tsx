@@ -213,10 +213,9 @@ function HowSection() {
           </h2>
         </div>
 
-        {/* Connector line behind the cards on desktop */}
-        <div className="relative grid gap-6 md:grid-cols-3">
-          <div className="pointer-events-none absolute left-[16.7%] right-[16.7%] top-12 hidden h-px md:block bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-
+        {/* Three step cards — the numbered 01 / 02 / 03 badges convey the
+            flow; no separate connector line (it cut through the cards). */}
+        <div className="grid gap-6 md:grid-cols-3">
           <StepCard
             n="01"
             title="Audio in"
@@ -374,7 +373,7 @@ function FinalCTA() {
     <section className="relative overflow-hidden border-t border-border/60">
       <div className="bg-mesh-violet absolute inset-0 opacity-50" />
       <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 py-28 text-center">
-        <Logo size="xl" href={null} showText={false} className="mb-6" />
+        <Logo size="xl" href={null} className="mb-6" />
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
           Stop hearing the music.<br />
           <span className="text-gradient-violet-cyan">Start hearing the voice.</span>
