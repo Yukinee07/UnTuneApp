@@ -24,6 +24,9 @@ frontend/build/
 frontend/.env.local
 frontend/.env*.local
 
+# Logo source PNGs — served copies live in frontend/public/logo/
+frontend/Logo/
+
 # Editor / OS
 .vscode/
 .idea/
