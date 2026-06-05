@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SiteNav } from "@/components/site-nav";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { FloatingNav } from "@/components/floating-nav";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -35,9 +36,22 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider>
-          <SiteNav />
+          {/* No header — navigation lives in <FloatingNav /> on the edges. */}
           <main className="flex-1 flex flex-col">{children}</main>
-          <Toaster richColors closeButton position="bottom-right" />
+
+          {/* Edge-glued nav (different per page) */}
+          <FloatingNav />
+
+          {/* Bottom-right theme toggle, glass pill, present on every page. */}
+          <div className="fixed bottom-6 right-6 z-50">
+            <div className="rounded-full bg-background/80 p-1 shadow-lg ring-1 ring-border backdrop-blur-md transition-shadow hover:shadow-xl">
+              <ThemeToggle />
+            </div>
+          </div>
+
+          {/* Toaster at bottom-LEFT so it doesn't collide with the
+              floating theme toggle at bottom-right. */}
+          <Toaster richColors closeButton position="bottom-left" />
         </ThemeProvider>
       </body>
     </html>

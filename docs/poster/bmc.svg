@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!--
+    UnTuneApp — Business Model Canvas (v2 — concise, icon-driven)
+    Headlines only. No explanation text. Big stat callouts where they pay off.
+  -->
+
+  <defs>
+    <style>
+      .h-title  { font-size: 38px; font-weight: 800; fill: #0f172a; letter-spacing: -0.02em; }
+      .h-sub    { font-size: 15px; fill: #64748b; }
+
+      .blk-ttl  { font-size: 18px; font-weight: 800; fill: #ffffff; letter-spacing: 1.5px; }
+
+      .cat-pill-cy { fill: #cffafe; }
+      .cat-pill-vi { fill: #ede9fe; }
+      .cat-pill-am { fill: #fef3c7; }
+
+      .cat-cy { font-size: 12px; font-weight: 800; fill: #0e7490; letter-spacing: 1.5px; }
+      .cat-vi { font-size: 12px; font-weight: 800; fill: #6d28d9; letter-spacing: 1.5px; }
+      .cat-am { font-size: 12px; font-weight: 800; fill: #92400e; letter-spacing: 1.5px; }
+
+      .item    { font-size: 14px; font-weight: 600; fill: #1f2937; }
+      .item-em { font-size: 15px; font-weight: 800; fill: #1f2937; }
+
+      .stat-huge { font-size: 78px; font-weight: 900; letter-spacing: -0.04em; }
+      .stat-cap  { font-size: 12px; font-weight: 800; letter-spacing: 2px; fill: #6d28d9; }
+    </style>
+
+    <!-- Reusable bullet dot per category -->
+    <symbol id="dot-cy" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3.5" fill="#06b6d4"/></symbol>
+    <symbol id="dot-vi" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3.5" fill="#8b5cf6"/></symbol>
+    <symbol id="dot-am" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3.5" fill="#f59e0b"/></symbol>
+
+    <!-- Reusable inline icons -->
+    <symbol id="ico-bolt" viewBox="0 0 24 24" fill="#7c3aed">
+      <path d="M13 2 L4 14 H11 L10 22 L20 9 H13 Z"/>
+    </symbol>
+    <symbol id="ico-lock" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <path d="M8 11 V7 a4 4 0 0 1 8 0 v4"/>
+    </symbol>
+    <symbol id="ico-code" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M9 7 L3 12 L9 17 M15 7 L21 12 L15 17"/>
+    </symbol>
+    <symbol id="ico-tune" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <line x1="4" y1="7"  x2="20" y2="7"/>  <circle cx="10" cy="7"  r="2.5" fill="white"/>
+      <line x1="4" y1="13" x2="20" y2="13"/> <circle cx="15" cy="13" r="2.5" fill="white"/>
+      <line x1="4" y1="19" x2="20" y2="19"/> <circle cx="8"  cy="19" r="2.5" fill="white"/>
+    </symbol>
+    <symbol id="ico-x" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round">
+      <line x1="6" y1="6" x2="18" y2="18"/>
+      <line x1="18" y1="6" x2="6" y2="18"/>
+    </symbol>
+    <symbol id="ico-moon" viewBox="0 0 24 24" fill="#7c3aed">
+      <path d="M20 14 A8 8 0 1 1 10 4 A6 6 0 0 0 20 14 Z"/>
+    </symbol>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+
+  <!-- ═════════════════════════════ TITLE ═════════════════════════════ -->
+  <text x="40" y="48" class="h-title">UnTuneApp — Business Model Canvas</text>
+  <text x="40" y="72" class="h-sub">Real-time vocal isolation for the global Muslim ummah · Open-source · On-device · Privacy-first</text>
+
+  <!-- Legend (top-right) -->
+  <g font-size="11" font-weight="700" fill="#475569">
+    <rect x="1320" y="32" width="20" height="14" rx="2" fill="#06b6d4"/>
+    <text x="1346" y="44">OPERATIONS</text>
+    <rect x="1460" y="32" width="20" height="14" rx="2" fill="#8b5cf6"/>
+    <text x="1486" y="44">CUSTOMER-FACING</text>
+    <rect x="1660" y="32" width="20" height="14" rx="2" fill="#f59e0b"/>
+    <text x="1686" y="44">FINANCIAL</text>
+  </g>
+
+  <!-- ═════════════════════════════ TOP SECTION (5-COLUMN) ═════════════════════════════ -->
+
+  <!-- ─── COL 1 — KEY PARTNERS (340 × 700) ─────────────────────────── -->
+  <g>
+    <rect x="40" y="100" width="340" height="700" rx="10" fill="#ffffff" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="40" y="100" width="340" height="62"  rx="10" fill="#06b6d4"/>
+    <rect x="40" y="148" width="340" height="14"  fill="#06b6d4"/>
+    <g transform="translate(60,118)" stroke="white" stroke-width="2.3" fill="white" opacity="0.95" stroke-linejoin="round">
+      <path d="M 0 6 L 5 1 L 12 4 L 18 -2 L 24 4 L 18 10 L 12 4 L 5 9 Z"/>
+    </g>
+    <text x="100" y="138" class="blk-ttl">KEY PARTNERS</text>
+
+    <!-- Categories with pill backgrounds -->
+    <g>
+      <rect x="60" y="190" width="120" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="75" y="206" class="cat-cy">ACADEMIC</text>
+      <use href="#dot-cy" x="65" y="226" width="10" height="10"/> <text x="82"  y="234" class="item-em">IIUM · KICT</text>
+      <use href="#dot-cy" x="65" y="248" width="10" height="10"/> <text x="82"  y="256" class="item">Dr. Sharyar Wani</text>
+
+      <rect x="60" y="280" width="160" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="75" y="296" class="cat-cy">TECH STACK</text>
+      <use href="#dot-cy" x="65" y="316" width="10" height="10"/> <text x="82" y="324" class="item">PyTorch · CUDA</text>
+      <use href="#dot-cy" x="65" y="338" width="10" height="10"/> <text x="82" y="346" class="item">FastAPI · Next.js</text>
+      <use href="#dot-cy" x="65" y="360" width="10" height="10"/> <text x="82" y="368" class="item">VB-Audio driver</text>
+      <use href="#dot-cy" x="65" y="382" width="10" height="10"/> <text x="82" y="390" class="item">yt-dlp · ffmpeg</text>
+
+      <rect x="60" y="412" width="180" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="75" y="428" class="cat-cy">DATA &amp; MODELS</text>
+      <use href="#dot-cy" x="65" y="448" width="10" height="10"/> <text x="82" y="456" class="item">MUSDB18-HQ</text>
+      <use href="#dot-cy" x="65" y="470" width="10" height="10"/> <text x="82" y="478" class="item">Demucs (FAIR)</text>
+
+      <rect x="60" y="502" width="200" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="75" y="518" class="cat-cy">DISTRIBUTION</text>
+      <use href="#dot-cy" x="65" y="538" width="10" height="10"/> <text x="82" y="546" class="item">Masjids · MSAs</text>
+      <use href="#dot-cy" x="65" y="560" width="10" height="10"/> <text x="82" y="568" class="item">Muslim creators</text>
+      <use href="#dot-cy" x="65" y="582" width="10" height="10"/> <text x="82" y="590" class="item">GitHub</text>
+
+      <rect x="60" y="622" width="160" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="75" y="638" class="cat-cy">FUTURE</text>
+      <use href="#dot-cy" x="65" y="658" width="10" height="10"/> <text x="82" y="666" class="item">Cloud GPU (Modal)</text>
+      <use href="#dot-cy" x="65" y="680" width="10" height="10"/> <text x="82" y="688" class="item">Hugging Face</text>
+      <use href="#dot-cy" x="65" y="702" width="10" height="10"/> <text x="82" y="710" class="item">Browser stores</text>
+      <use href="#dot-cy" x="65" y="724" width="10" height="10"/> <text x="82" y="732" class="item">Islamic NGOs</text>
+    </g>
+  </g>
+
+  <!-- ─── COL 2 TOP — KEY ACTIVITIES (340 × 345) ───────────────────── -->
+  <g>
+    <rect x="390" y="100" width="340" height="345" rx="10" fill="#ffffff" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="390" y="100" width="340" height="62"  rx="10" fill="#06b6d4"/>
+    <rect x="390" y="148" width="340" height="14"  fill="#06b6d4"/>
+    <g transform="translate(410,118)" stroke="white" stroke-width="2.3" fill="none" stroke-linecap="round">
+      <circle cx="12" cy="0" r="9"/>
+      <line x1="12" y1="-12" x2="12" y2="-9"/> <line x1="12" y1="9" x2="12" y2="12"/>
+      <line x1="0" y1="0" x2="3" y2="0"/>      <line x1="21" y1="0" x2="24" y2="0"/>
+    </g>
+    <text x="450" y="138" class="blk-ttl">KEY ACTIVITIES</text>
+
+    <g>
+      <rect x="410" y="190" width="140" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="206" class="cat-cy">MODEL R&amp;D</text>
+      <use href="#dot-cy" x="415" y="226" width="10" height="10"/> <text x="432" y="234" class="item">Train v14, v15</text>
+      <use href="#dot-cy" x="415" y="248" width="10" height="10"/> <text x="432" y="256" class="item">YouTube data harvest</text>
+      <use href="#dot-cy" x="415" y="270" width="10" height="10"/> <text x="432" y="278" class="item">Blind listening tests</text>
+
+      <rect x="410" y="302" width="200" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="318" class="cat-cy">PRODUCT ENGINEERING</text>
+      <use href="#dot-cy" x="415" y="338" width="10" height="10"/> <text x="432" y="346" class="item">Web app · streaming pipeline</text>
+      <use href="#dot-cy" x="415" y="360" width="10" height="10"/> <text x="432" y="368" class="item">Cross-platform (Mac, mobile)</text>
+      <use href="#dot-cy" x="415" y="382" width="10" height="10"/> <text x="432" y="390" class="item">Browser extension</text>
+
+      <rect x="410" y="412" width="120" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="428" class="cat-cy">COMMUNITY</text>
+    </g>
+  </g>
+
+  <!-- ─── COL 2 BOTTOM — KEY RESOURCES (340 × 345) ─────────────────── -->
+  <g>
+    <rect x="390" y="455" width="340" height="345" rx="10" fill="#ffffff" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="390" y="455" width="340" height="62"  rx="10" fill="#06b6d4"/>
+    <rect x="390" y="503" width="340" height="14"  fill="#06b6d4"/>
+    <g transform="translate(410,473)" stroke="white" stroke-width="2.3" fill="white" opacity="0.95">
+      <ellipse cx="12" cy="-7" rx="11" ry="3.5"/>
+      <path d="M 1 -7 v 14 a 11 4 0 0 0 22 0 v -14" fill="none"/>
+      <path d="M 1 0 a 11 4 0 0 0 22 0" fill="none"/>
+    </g>
+    <text x="450" y="493" class="blk-ttl">KEY RESOURCES</text>
+
+    <g>
+      <rect x="410" y="545" width="180" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="561" class="cat-cy">INTELLECTUAL PROPERTY</text>
+      <use href="#dot-cy" x="415" y="581" width="10" height="10"/> <text x="432" y="589" class="item-em">HSTasNet v12 model</text>
+      <use href="#dot-cy" x="415" y="603" width="10" height="10"/> <text x="432" y="611" class="item">v13 checkpoint · val −38.28</text>
+      <use href="#dot-cy" x="415" y="625" width="10" height="10"/> <text x="432" y="633" class="item">Streaming architecture</text>
+
+      <rect x="410" y="655" width="170" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="671" class="cat-cy">CODE &amp; BRAND</text>
+      <use href="#dot-cy" x="415" y="691" width="10" height="10"/> <text x="432" y="699" class="item">Open-source codebase</text>
+
+      <rect x="410" y="722" width="180" height="22" rx="11" class="cat-pill-cy"/>
+      <text x="425" y="738" class="cat-cy">PEOPLE &amp; INSTITUTIONS</text>
+      <use href="#dot-cy" x="415" y="758" width="10" height="10"/> <text x="432" y="766" class="item">Founders · IIUM backing</text>
+      <use href="#dot-cy" x="415" y="780" width="10" height="10"/> <text x="432" y="788" class="item">RTX 4060 (dev hardware)</text>
+    </g>
+  </g>
+
+  <!-- ─── COL 3 — VALUE PROPOSITION (440 × 700, EMPHASIS) ──────────── -->
+  <g>
+    <rect x="740" y="100" width="440" height="700" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="2.5"/>
+    <rect x="740" y="100" width="440" height="62"  rx="10" fill="#8b5cf6"/>
+    <rect x="740" y="148" width="440" height="14"  fill="#8b5cf6"/>
+    <g transform="translate(760,118)" stroke="white" stroke-width="2.4" fill="white">
+      <path d="M 12 -10 L 15 -3 L 22 0 L 15 3 L 12 10 L 9 3 L 2 0 L 9 -3 Z"/>
+    </g>
+    <text x="800" y="138" class="blk-ttl">VALUE PROPOSITION</text>
+
+    <!-- The big offer -->
+    <text x="760" y="195" font-size="13" font-weight="800" fill="#5b21b6" letter-spacing="2">THE CORE OFFER</text>
+    <text x="760" y="226" font-size="22" font-weight="800" fill="#1f2937">Watch any video.</text>
+    <text x="760" y="252" font-size="22" font-weight="800" fill="#1f2937">Listen to any podcast.</text>
+    <text x="760" y="278" font-size="22" font-weight="800" fill="#8b5cf6"><tspan font-style="italic">Without music.</tspan> In real time.</text>
+
+    <!-- Differentiators -->
+    <text x="760" y="324" font-size="13" font-weight="800" fill="#5b21b6" letter-spacing="2">KEY DIFFERENTIATORS</text>
+
+    <use href="#ico-bolt" x="760" y="338" width="22" height="22"/>
+    <text x="792" y="356" class="item-em">Real-time · sub-200 ms</text>
+
+    <use href="#ico-lock" x="760" y="372" width="22" height="22"/>
+    <text x="792" y="390" class="item-em">Runs locally on your GPU</text>
+
+    <use href="#ico-code" x="760" y="406" width="22" height="22"/>
+    <text x="792" y="424" class="item-em">Open-source &amp; auditable</text>
+
+    <use href="#ico-tune" x="760" y="440" width="22" height="22"/>
+    <text x="792" y="458" class="item-em">Three input modes</text>
+
+    <!-- Competitors — as struck-through pills -->
+    <text x="760" y="504" font-size="13" font-weight="800" fill="#5b21b6" letter-spacing="2">WHY US OVER…</text>
+
+    <g>
+      <rect x="760" y="518" width="180" height="28" rx="14" fill="#fee2e2" stroke="#fca5a5"/>
+      <use href="#ico-x" x="766" y="523" width="18" height="18"/>
+      <text x="790" y="538" font-size="13" font-weight="700" fill="#7f1d1d">LALAL.ai · Moises</text>
+
+      <rect x="950" y="518" width="170" height="28" rx="14" fill="#fee2e2" stroke="#fca5a5"/>
+      <use href="#ico-x" x="956" y="523" width="18" height="18"/>
+      <text x="980" y="538" font-size="13" font-weight="700" fill="#7f1d1d">HaramMute</text>
+
+      <rect x="760" y="554" width="180" height="28" rx="14" fill="#fee2e2" stroke="#fca5a5"/>
+      <use href="#ico-x" x="766" y="559" width="18" height="18"/>
+      <text x="790" y="574" font-size="13" font-weight="700" fill="#7f1d1d">Spleeter · Demucs</text>
+
+      <rect x="950" y="554" width="170" height="28" rx="14" fill="#fee2e2" stroke="#fca5a5"/>
+      <use href="#ico-x" x="956" y="559" width="18" height="18"/>
+      <text x="980" y="574" font-size="13" font-weight="700" fill="#7f1d1d">RTX Voice</text>
+    </g>
+
+    <!-- Islamic ethics -->
+    <text x="760" y="620" font-size="13" font-weight="800" fill="#5b21b6" letter-spacing="2">ISLAMIC ETHICAL CORE</text>
+
+    <use href="#ico-moon" x="760" y="634" width="22" height="22"/>
+    <text x="792" y="652" class="item-em">Built for Muslim media access</text>
+
+    <use href="#ico-lock" x="760" y="666" width="22" height="22"/>
+    <text x="792" y="684" class="item">Privacy by design  ·  <tspan font-style="italic">satr</tspan></text>
+
+    <use href="#ico-code" x="760" y="698" width="22" height="22"/>
+    <text x="792" y="716" class="item">Open-source  ·  <tspan font-style="italic">sadaqah jariyah</tspan></text>
+  </g>
+
+  <!-- ─── COL 4 TOP — CUSTOMER RELATIONSHIPS (340 × 345) ──────────── -->
+  <g>
+    <rect x="1190" y="100" width="340" height="345" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="1190" y="100" width="340" height="62"  rx="10" fill="#8b5cf6"/>
+    <rect x="1190" y="148" width="340" height="14"  fill="#8b5cf6"/>
+    <g transform="translate(1210,118)" stroke="white" stroke-width="2.3" fill="white" opacity="0.95" stroke-linejoin="round">
+      <path d="M 0 -8 h 22 a 4 4 0 0 1 4 4 v 10 a 4 4 0 0 1 -4 4 h -16 l -6 6 v -6 a 4 4 0 0 1 -4 -4 v -10 a 4 4 0 0 1 4 -4 z"/>
+    </g>
+    <text x="1250" y="138" class="blk-ttl">CUSTOMER RELATIONSHIPS</text>
+
+    <g>
+      <rect x="1210" y="190" width="180" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="206" class="cat-vi">COMMUNITY-DRIVEN</text>
+      <use href="#dot-vi" x="1215" y="226" width="10" height="10"/> <text x="1232" y="234" class="item">GitHub · issues · PRs</text>
+      <use href="#dot-vi" x="1215" y="248" width="10" height="10"/> <text x="1232" y="256" class="item">Discord · Telegram</text>
+
+      <rect x="1210" y="280" width="100" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="296" class="cat-vi">SELF-SERVE</text>
+      <use href="#dot-vi" x="1215" y="316" width="10" height="10"/> <text x="1232" y="324" class="item">Free download &amp; run</text>
+      <use href="#dot-vi" x="1215" y="338" width="10" height="10"/> <text x="1232" y="346" class="item">Tutorials &amp; videos</text>
+
+      <rect x="1210" y="370" width="120" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="386" class="cat-vi">EDUCATIONAL</text>
+      <use href="#dot-vi" x="1215" y="406" width="10" height="10"/> <text x="1232" y="414" class="item">Islamic AI ethics blog</text>
+      <use href="#dot-vi" x="1215" y="428" width="10" height="10"/> <text x="1232" y="436" class="item">Public FYP report</text>
+    </g>
+  </g>
+
+  <!-- ─── COL 4 BOTTOM — CHANNELS (340 × 345) ─────────────────────── -->
+  <g>
+    <rect x="1190" y="455" width="340" height="345" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="1190" y="455" width="340" height="62"  rx="10" fill="#8b5cf6"/>
+    <rect x="1190" y="503" width="340" height="14"  fill="#8b5cf6"/>
+    <g transform="translate(1210,473)" stroke="white" stroke-width="2.4" fill="white" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M -2 0 L 22 -10 L 22 10 Z"/>
+    </g>
+    <text x="1250" y="493" class="blk-ttl">CHANNELS</text>
+
+    <g>
+      <rect x="1210" y="545" width="80" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="561" class="cat-vi">DIRECT</text>
+      <use href="#dot-vi" x="1215" y="581" width="10" height="10"/> <text x="1232" y="589" class="item">Website  ·  UnTuneApp.com</text>
+      <use href="#dot-vi" x="1215" y="603" width="10" height="10"/> <text x="1232" y="611" class="item">GitHub  ·  desktop installer</text>
+
+      <rect x="1210" y="635" width="180" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="651" class="cat-vi">ORGANIC · COMMUNITY</text>
+      <use href="#dot-vi" x="1215" y="671" width="10" height="10"/> <text x="1232" y="679" class="item">LinkedIn · X · Instagram</text>
+      <use href="#dot-vi" x="1215" y="693" width="10" height="10"/> <text x="1232" y="701" class="item">Muslim YouTube creators</text>
+      <use href="#dot-vi" x="1215" y="715" width="10" height="10"/> <text x="1232" y="723" class="item">Masjid &amp; MSA outreach</text>
+
+      <rect x="1210" y="745" width="110" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1225" y="761" class="cat-vi">FUTURE</text>
+      <use href="#dot-vi" x="1215" y="781" width="10" height="10"/> <text x="1232" y="789" class="item">Chrome Web Store · App Store</text>
+    </g>
+  </g>
+
+  <!-- ─── COL 5 — CUSTOMER SEGMENTS (340 × 700) — STAT CALLOUT ────── -->
+  <g>
+    <rect x="1540" y="100" width="340" height="700" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="1540" y="100" width="340" height="62"  rx="10" fill="#8b5cf6"/>
+    <rect x="1540" y="148" width="340" height="14"  fill="#8b5cf6"/>
+    <g transform="translate(1560,118)" stroke="white" stroke-width="2.3" fill="white" stroke-linejoin="round">
+      <circle cx="6" cy="-4" r="4"/>
+      <path d="M -1 6 a 7 7 0 0 1 14 0 z"/>
+      <circle cx="18" cy="-2" r="3"/>
+      <path d="M 13 6 a 6 6 0 0 1 12 0" fill="none" stroke-linecap="round"/>
+    </g>
+    <text x="1605" y="138" class="blk-ttl">CUSTOMER SEGMENTS</text>
+
+    <!-- Big stat callout -->
+    <text x="1710" y="225" text-anchor="middle" class="stat-cap">PRIMARY MARKET</text>
+    <text x="1710" y="305" text-anchor="middle" class="stat-huge" fill="#7c3aed">1.9B</text>
+    <text x="1710" y="335" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">Muslims worldwide</text>
+
+    <line x1="1570" y1="370" x2="1850" y2="370" stroke="#e5e7eb"/>
+
+    <g>
+      <rect x="1560" y="392" width="100" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1575" y="408" class="cat-vi">PRIMARY</text>
+      <use href="#dot-vi" x="1565" y="428" width="10" height="10"/> <text x="1582" y="436" class="item-em">Practising Muslims</text>
+      <use href="#dot-vi" x="1565" y="452" width="10" height="10"/> <text x="1582" y="460" class="item">Islamic schools · madrassas</text>
+      <use href="#dot-vi" x="1565" y="476" width="10" height="10"/> <text x="1582" y="484" class="item">Masjids · da'wah centres</text>
+      <use href="#dot-vi" x="1565" y="500" width="10" height="10"/> <text x="1582" y="508" class="item">Muslim content creators</text>
+
+      <rect x="1560" y="540" width="220" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1575" y="556" class="cat-vi">SECONDARY · ADJACENT</text>
+      <use href="#dot-vi" x="1565" y="576" width="10" height="10"/> <text x="1582" y="584" class="item">ADHD · autism users</text>
+      <use href="#dot-vi" x="1565" y="600" width="10" height="10"/> <text x="1582" y="608" class="item">Hearing-impaired</text>
+      <use href="#dot-vi" x="1565" y="624" width="10" height="10"/> <text x="1582" y="632" class="item">Podcast listeners</text>
+      <use href="#dot-vi" x="1565" y="648" width="10" height="10"/> <text x="1582" y="656" class="item">Audio ML researchers</text>
+
+      <rect x="1560" y="688" width="120" height="22" rx="11" class="cat-pill-vi"/>
+      <text x="1575" y="704" class="cat-vi">B2B FUTURE</text>
+      <use href="#dot-vi" x="1565" y="724" width="10" height="10"/> <text x="1582" y="732" class="item">Podcast platforms</text>
+      <use href="#dot-vi" x="1565" y="748" width="10" height="10"/> <text x="1582" y="756" class="item">Islamic content apps</text>
+    </g>
+  </g>
+
+  <!-- ═════════════════════════════ BOTTOM SECTION ═════════════════════════════ -->
+
+  <!-- ─── COST STRUCTURE ──────────────────────────────────────────── -->
+  <g>
+    <rect x="40" y="820" width="915" height="220" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="40" y="820" width="915" height="62"  rx="10" fill="#f59e0b"/>
+    <rect x="40" y="868" width="915" height="14"  fill="#f59e0b"/>
+    <g transform="translate(60,838)" stroke="white" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 12 -10 v 18 M 6 4 l 6 6 l 6 -6"/>
+    </g>
+    <text x="100" y="858" class="blk-ttl">COST STRUCTURE</text>
+
+    <g>
+      <rect x="60"  y="908" width="160" height="24" rx="12" class="cat-pill-am"/>
+      <text x="75"  y="926" class="cat-am">CURRENT (FYP)</text>
+      <use href="#dot-am" x="60" y="944" width="10" height="10"/> <text x="78" y="954" class="item-em">~$0 capital cost</text>
+      <use href="#dot-am" x="60" y="970" width="10" height="10"/> <text x="78" y="980" class="item">Local GPU electricity</text>
+      <use href="#dot-am" x="60" y="996" width="10" height="10"/> <text x="78" y="1006" class="item">Domain · $15/yr</text>
+      <use href="#dot-am" x="60" y="1022" width="10" height="10"/> <text x="78" y="1032" class="item">Volunteer engineering</text>
+
+      <line x1="490" y1="900" x2="490" y2="1040" stroke="#fde68a" stroke-dasharray="3 3"/>
+
+      <rect x="510" y="908" width="200" height="24" rx="12" class="cat-pill-am"/>
+      <text x="525" y="926" class="cat-am">FUTURE (OPERATIONAL)</text>
+      <use href="#dot-am" x="510" y="944" width="10" height="10"/> <text x="528" y="954" class="item-em">Cloud GPU $500–2k/mo</text>
+      <use href="#dot-am" x="510" y="970" width="10" height="10"/> <text x="528" y="980" class="item">Marketing &amp; community</text>
+      <use href="#dot-am" x="510" y="996" width="10" height="10"/> <text x="528" y="1006" class="item">Salaries (if team grows)</text>
+      <use href="#dot-am" x="510" y="1022" width="10" height="10"/> <text x="528" y="1032" class="item">Commercial dataset license</text>
+    </g>
+  </g>
+
+  <!-- ─── REVENUE STREAMS ─────────────────────────────────────────── -->
+  <g>
+    <rect x="965" y="820" width="915" height="220" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="965" y="820" width="915" height="62"  rx="10" fill="#f59e0b"/>
+    <rect x="965" y="868" width="915" height="14"  fill="#f59e0b"/>
+    <g transform="translate(985,838)" stroke="white" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 12 10 v -18 M 6 -4 l 6 -6 l 6 6"/>
+    </g>
+    <text x="1025" y="858" class="blk-ttl">REVENUE STREAMS</text>
+
+    <g>
+      <rect x="985" y="908" width="170" height="24" rx="12" class="cat-pill-am"/>
+      <text x="1000" y="926" class="cat-am">FREEMIUM SaaS</text>
+      <use href="#dot-am" x="985" y="944" width="10" height="10"/> <text x="1003" y="954" class="item-em">Free  ·  local download</text>
+      <use href="#dot-am" x="985" y="970" width="10" height="10"/> <text x="1003" y="980" class="item">Premium  ·  $5/mo cloud tier</text>
+      <use href="#dot-am" x="985" y="996" width="10" height="10"/> <text x="1003" y="1006" class="item">Lifetime  ·  $9.99 desktop</text>
+
+      <rect x="1280" y="908" width="160" height="24" rx="12" class="cat-pill-am"/>
+      <text x="1295" y="926" class="cat-am">B2B / LICENSING</text>
+      <use href="#dot-am" x="1280" y="944" width="10" height="10"/> <text x="1298" y="954" class="item">API · $X per 1k minutes</text>
+      <use href="#dot-am" x="1280" y="970" width="10" height="10"/> <text x="1298" y="980" class="item">Institutional licenses</text>
+
+      <rect x="1280" y="1000" width="100" height="24" rx="12" class="cat-pill-am"/>
+      <text x="1295" y="1018" class="cat-am">COMMUNITY</text>
+
+      <rect x="1580" y="908" width="170" height="24" rx="12" class="cat-pill-am"/>
+      <text x="1595" y="926" class="cat-am">PARTNERSHIPS</text>
+      <use href="#dot-am" x="1580" y="944" width="10" height="10"/> <text x="1598" y="954" class="item">Muslim tech sponsors</text>
+      <use href="#dot-am" x="1580" y="970" width="10" height="10"/> <text x="1598" y="980" class="item">Islamic foundation grants</text>
+      <use href="#dot-am" x="1580" y="996" width="10" height="10"/> <text x="1598" y="1006" class="item">Co-branded enterprise</text>
+    </g>
+  </g>
+</svg>

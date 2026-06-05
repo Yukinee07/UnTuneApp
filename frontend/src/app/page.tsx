@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, Mic, Music, Cpu, Zap, AudioLines, Code2, Sparkles,
+  ArrowRight, Music, Cpu, Zap, AudioLines, Code2,
   Upload, Video, Radio, ChevronDown, Layers, Waves,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -41,51 +41,79 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="bg-mesh-violet relative overflow-hidden">
-      {/* Faint dotted grid overlay for texture */}
+      {/* Floating gradient orbs — depth + atmosphere */}
+      <div className="orb orb-violet -left-32 -top-24 h-[28rem] w-[28rem]" />
+      <div className="orb orb-cyan   right-[-10%] top-[12%] h-[24rem] w-[24rem]" />
+      <div className="orb orb-violet bottom-[-10%] left-[35%] h-[26rem] w-[26rem]" />
+
+      {/* Faint dotted grid + film grain overlays */}
       <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 noise pointer-events-none" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-24 text-center md:py-36">
-        <Badge variant="outline" className="mb-6 gap-1.5 border-primary/40 bg-primary/5 text-primary backdrop-blur-sm">
-          <Sparkles className="h-3 w-3" />
-          HS-TasNet v12 · running on your GPU
-        </Badge>
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-28 text-center md:py-44">
+        {/* Logo sits above the headline — replaces the previous header bar */}
+        <div className="mb-10 animate-fade-in-up">
+          <Logo size="xl" href={null} />
+        </div>
 
-        <h1 className="max-w-4xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl lg:text-[5.5rem]">
+        <h1 className="text-glow-primary max-w-5xl text-balance text-6xl font-bold leading-[0.98] tracking-[-0.025em] md:text-8xl lg:text-[6.5rem]">
           The internet is loud.{" "}
           <span className="text-gradient-violet-cyan">Mute the&nbsp;</span>
           <span className="text-gradient-violet-cyan strike-line">music.</span>
         </h1>
 
-        <p className="mt-8 max-w-2xl text-balance text-lg text-muted-foreground md:text-xl">
+        <p className="mt-10 max-w-2xl text-balance text-lg text-muted-foreground md:text-xl">
           UnTuneApp pulls the vocals out of any song, video, or live stream
           in real time. No cloud round-trip — your RTX 4060 does the work.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Button render={<Link href="/process" />} size="lg" className="text-base">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          <Button
+            id="hero-cta"
+            render={<Link href="/process" />}
+            size="lg"
+            className="glow-primary-hover breathe-glow h-11 px-6 text-base"
+          >
             Open Workspace
             <ArrowRight className="ml-1.5 h-4 w-4" />
           </Button>
-          <Button render={<Link href="#magic" />} variant="secondary" size="lg" className="text-base">
+          <Button
+            render={<Link href="#magic" />}
+            variant="secondary"
+            size="lg"
+            className="h-11 px-6 text-base backdrop-blur-sm"
+          >
             See it work
             <ChevronDown className="ml-1.5 h-4 w-4" />
           </Button>
         </div>
 
-        {/* Animated EQ bars centred under the CTAs */}
-        <div className="mt-20 flex h-20 items-end gap-1.5">
-          {Array.from({ length: 28 }).map((_, i) => (
-            <span
-              key={i}
-              className="eq-bar w-1.5 rounded-full bg-gradient-to-t from-primary/60 to-accent/80"
-              style={{
-                height: `${30 + Math.sin(i * 0.7) * 30 + ((i * 53) % 30)}%`,
-                animationDelay: `${(i % 10) * 0.1}s`,
-              }}
-            />
-          ))}
+        {/* Hero centerpiece — pulsing-ring audio visualizer with EQ bars at its core.
+            Replaces the small bottom-edge EQ bars with something that reads as
+            "audio emitting energy outward". */}
+        <div className="relative mt-24 flex h-40 w-full items-end justify-center">
+          {/* Three concentric pulse rings */}
+          <div className="pulse-ring h-32 w-32" style={{ animationDelay: "0s" }}    />
+          <div className="pulse-ring h-32 w-32" style={{ animationDelay: "1s" }}    />
+          <div className="pulse-ring h-32 w-32" style={{ animationDelay: "2s" }}    />
+          {/* Central row of EQ bars */}
+          <div className="relative z-10 flex h-20 items-end gap-1.5">
+            {Array.from({ length: 32 }).map((_, i) => (
+              <span
+                key={i}
+                className="eq-bar w-1.5 rounded-full bg-gradient-to-t from-primary to-accent shadow-[0_0_8px_oklch(from_var(--primary)_l_c_h/0.6)]"
+                style={{
+                  height: `${28 + Math.abs(Math.sin(i * 0.6)) * 60 + ((i * 47) % 18)}%`,
+                  animationDelay: `${(i % 12) * 0.1}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Soft gradient bleed into the next section */}
+      <div className="divider-bleed mx-auto max-w-6xl" />
     </section>
   );
 }
@@ -98,7 +126,6 @@ function MagicSection() {
   return (
     <section id="magic" className="relative mx-auto w-full max-w-6xl px-4 py-24">
       <div className="mb-14 text-center">
-        <Badge variant="secondary" className="mb-4">The magic</Badge>
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
           Watch the music{" "}
           <span className="text-gradient-violet-cyan">disappear</span>.
@@ -207,33 +234,30 @@ function HowSection() {
     <section className="relative bg-dots/40">
       <div className="mx-auto w-full max-w-6xl px-4 py-24">
         <div className="mb-14 text-center">
-          <Badge variant="secondary" className="mb-4">How it works</Badge>
-          <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            Three steps. Two layers. <span className="text-gradient-violet-cyan">One voice.</span>
+          <h2 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
+            How it works
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-balance text-2xl font-semibold tracking-tight text-muted-foreground md:text-3xl">
+            Three steps. Two layers.{" "}
+            <span className="text-gradient-violet-cyan">One voice.</span>
+          </p>
         </div>
 
-        {/* Connector line behind the cards on desktop */}
-        <div className="relative grid gap-6 md:grid-cols-3">
-          <div className="pointer-events-none absolute left-[16.7%] right-[16.7%] top-12 hidden h-px md:block bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="grid gap-6 md:grid-cols-3">
 
           <StepCard
             n="01"
             title="Audio in"
-            icon={<Music className="h-5 w-5" />}
             body="The full stereo mixture — singer, drums, bass, the lot — arrives 372 ms at a time, or all at once if you upload a file."
           />
           <StepCard
             n="02"
             title="HS-TasNet v12"
-            icon={<Cpu className="h-5 w-5" />}
             body="Two encoders — STFT spectrogram + learned convolution — feed five LSTM blocks that predict a complex mask per time-frequency bin."
-            highlight
           />
           <StepCard
             n="03"
             title="Vocals out"
-            icon={<Mic className="h-5 w-5" />}
             body="The mask is applied, the audio is decoded back to waveform, auto-levelled, then handed straight to your speakers or saved as .wav."
           />
         </div>
@@ -242,27 +266,20 @@ function HowSection() {
   );
 }
 
+/* Editorial step block — drops the SaaS-template-y "icon-in-tinted-square"
+   pattern.  Just a sizeable monospace number, a strong title, and prose.
+   No glow, no ring, no card-lift — calm and considered. */
 function StepCard({
-  n, title, icon, body, highlight = false,
+  n, title, body,
 }: {
-  n: string; title: string; icon: React.ReactNode; body: string; highlight?: boolean;
+  n: string; title: string; body: string;
 }) {
   return (
-    <Card className={
-      "relative overflow-hidden transition-transform hover:-translate-y-0.5 " +
-      (highlight ? "ring-1 ring-primary/40 bg-primary/[0.03]" : "")
-    }>
-      <CardContent className="space-y-4 pt-6">
-        <div className="flex items-center justify-between">
-          <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
-            {icon}
-          </div>
-          <span className="step-num font-mono text-2xl text-muted-foreground/40">{n}</span>
-        </div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">{body}</p>
-      </CardContent>
-    </Card>
+    <div className="reveal space-y-4 border-l border-border pl-6 py-2">
+      <p className="font-mono text-sm tracking-[0.18em] text-primary">{n}</p>
+      <h3 className="text-2xl font-semibold tracking-tight">{title}</h3>
+      <p className="text-[15px] leading-[1.7] text-muted-foreground">{body}</p>
+    </div>
   );
 }
 
@@ -273,7 +290,15 @@ function StepCard({
 function SpecsStrip() {
   return (
     <section className="border-y border-border/60 bg-secondary/20">
-      <div className="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-lg border border-border/40 my-12 md:grid-cols-4 mx-4">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-4 text-center">
+        <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          Resources used for training
+        </h2>
+        <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+          The hardware, model, and dataset behind the current checkpoint.
+        </p>
+      </div>
+      <div className="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-lg border border-border/40 mt-8 mb-12 md:grid-cols-4 mx-4">
         <Stat icon={<Zap        className="h-4 w-4 text-primary" />} label="End-to-end latency" value="~190 ms" note="Auto-levelling on, 8192-sample blocks" />
         <Stat icon={<Cpu        className="h-4 w-4 text-primary" />} label="GPU"               value="RTX 4060" note="CUDA 12.8 · ~27 ms per chunk" />
         <Stat icon={<AudioLines className="h-4 w-4 text-primary" />} label="Model"             value="30M params" note="v13 best.pt · val_loss −38.28 @ epoch 43" />
@@ -305,14 +330,13 @@ function Stat({
 function ModesSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-24">
-      <div className="mb-14 text-center">
-        <Badge variant="secondary" className="mb-4">Use it your way</Badge>
+      <div className="mb-14 max-w-3xl">
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-          Three ways in. <span className="text-gradient-violet-cyan">One way out.</span>
+          Three ways to feed it audio.
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Drop a file, paste a URL, or pipe live audio from anywhere on your
-          system. All three flows hit the same model on the same GPU.
+        <p className="mt-4 max-w-xl text-muted-foreground">
+          A file from your disk, a YouTube link, or whatever is currently
+          playing on your laptop. Same model handles all three.
         </p>
       </div>
 
@@ -348,8 +372,8 @@ function ModeCard({
 }) {
   return (
     <Card className={
-      "group relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 " +
-      (highlight ? "bg-gradient-to-br from-primary/[0.08] to-accent/[0.04] ring-1 ring-primary/40" : "")
+      "group card-lift reveal relative overflow-hidden " +
+      (highlight ? "bg-gradient-to-br from-primary/[0.08] to-accent/[0.04] ring-1 ring-primary/40 glow-primary" : "")
     }>
       <CardContent className="space-y-3 pt-6">
         <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 group-hover:bg-primary/25 transition-colors">
@@ -374,7 +398,7 @@ function FinalCTA() {
     <section className="relative overflow-hidden border-t border-border/60">
       <div className="bg-mesh-violet absolute inset-0 opacity-50" />
       <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 py-28 text-center">
-        <Logo size="xl" href={null} showText={false} className="mb-6" />
+        <Logo size="xl" href={null} className="mb-6" />
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
           Stop hearing the music.<br />
           <span className="text-gradient-violet-cyan">Start hearing the voice.</span>
