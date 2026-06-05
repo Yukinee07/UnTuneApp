@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1280"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!--
+    UnTune — Proper textbook-style flowchart.
+    Shapes follow ISO 5807 / standard flowchart convention:
+      ellipse   = terminator (start / stop)
+      rectangle = process
+      rhombus   = decision (yes/no branches)
+      arrow     = flow direction
+  -->
+
+  <defs>
+    <marker id="arr" viewBox="0 0 12 12" refX="10" refY="6"
+            markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f2937"/>
+    </marker>
+
+    <style>
+      .term-t  { font-size: 18px; font-weight: 700; fill: #ffffff; }
+      .proc-t  { font-size: 16px; font-weight: 600; fill: #1f2937; }
+      .proc-s  { font-size: 12.5px;                 fill: #6b7280; }
+      .dec-t   { font-size: 15px; font-weight: 700; fill: #1f2937; }
+      .yn      { font-size: 13px; font-weight: 700; }
+      .yn-y    { fill: #047857; }
+      .yn-n    { fill: #b91c1c; }
+    </style>
+  </defs>
+
+  <rect width="900" height="1280" fill="white"/>
+
+  <!-- ─── START ─────────────────────────────────────────────────── -->
+  <ellipse cx="450" cy="55" rx="95" ry="30" fill="#1f2937"/>
+  <text x="450" y="62" text-anchor="middle" class="term-t">START</text>
+
+  <!-- ─── Setup process ─────────────────────────────────────────── -->
+  <rect x="270" y="125" width="360" height="70" rx="6"
+        fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="450" y="155" text-anchor="middle" class="proc-t">Open VB-Cable + load AI model</text>
+  <text x="450" y="178" text-anchor="middle" class="proc-s">HSTasNet v12  ·  GPU initialised</text>
+
+  <!-- ─── Capture audio ─────────────────────────────────────────── -->
+  <rect x="270" y="235" width="360" height="70" rx="6"
+        fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="450" y="265" text-anchor="middle" class="proc-t">Capture 186 ms audio chunk</text>
+  <text x="450" y="288" text-anchor="middle" class="proc-s">8192 samples from VB-Cable</text>
+
+  <!-- ─── AI inference ──────────────────────────────────────────── -->
+  <rect x="270" y="345" width="360" height="70" rx="6"
+        fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="450" y="375" text-anchor="middle" class="proc-t">Neural network processes chunk</text>
+  <text x="450" y="398" text-anchor="middle" class="proc-s">predict mask: keep voice, remove music</text>
+
+  <!-- ─── DECISION 1: finished in time? ─────────────────────────── -->
+  <polygon points="450,470 620,560 450,650 280,560"
+           fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="450" y="555" text-anchor="middle" class="dec-t">Finished in time?</text>
+  <text x="450" y="575" text-anchor="middle" class="proc-s">(GPU faster than 186 ms?)</text>
+
+  <text x="335" y="640" class="yn yn-n">NO</text>
+  <text x="555" y="640" class="yn yn-y">YES</text>
+
+  <!-- ─── YES branch: apply mask ────────────────────────────────── -->
+  <rect x="540" y="690" width="290" height="68" rx="6"
+        fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="685" y="720" text-anchor="middle" class="proc-t">Apply mask to audio</text>
+  <text x="685" y="743" text-anchor="middle" class="proc-s">music removed · voice kept</text>
+
+  <!-- ─── NO branch: drop + silence ─────────────────────────────── -->
+  <rect x="65"  y="690" width="290" height="68" rx="6"
+        fill="#fff1f3" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="210" y="720" text-anchor="middle" class="proc-t" fill="#9f1239">Drop chunk + play silence</text>
+  <text x="210" y="743" text-anchor="middle" class="proc-s">prevents lag · &lt; 1 % of chunks</text>
+
+  <!-- Decision branches → both → merge -->
+  <path d="M615,580 L685,690" fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+  <path d="M285,580 L210,690" fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- ─── Merge → Play ──────────────────────────────────────────── -->
+  <path d="M685,758 L685,805 L450,805" fill="none" stroke="#1f2937" stroke-width="2.5"/>
+  <path d="M210,758 L210,805 L450,805" fill="none" stroke="#1f2937" stroke-width="2.5"/>
+  <path d="M450,805 L450,840"          fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <rect x="270" y="845" width="360" height="70" rx="6"
+        fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="450" y="875" text-anchor="middle" class="proc-t">Send result to speakers</text>
+  <text x="450" y="898" text-anchor="middle" class="proc-s">user hears vocals only</text>
+
+  <!-- ─── DECISION 2: more audio? ───────────────────────────────── -->
+  <polygon points="450,955 620,1045 450,1135 280,1045"
+           fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="450" y="1040" text-anchor="middle" class="dec-t">More audio playing?</text>
+  <text x="450" y="1060" text-anchor="middle" class="proc-s">(user still streaming?)</text>
+
+  <text x="555" y="1130" class="yn yn-y">YES — loop</text>
+  <text x="338" y="1130" class="yn yn-n">NO</text>
+
+  <!-- ─── STOP terminator ───────────────────────────────────────── -->
+  <ellipse cx="200" cy="1200" rx="90" ry="28" fill="#1f2937"/>
+  <text x="200" y="1207" text-anchor="middle" class="term-t">STOP</text>
+
+  <!-- ─── Vertical arrows between top-of-flow blocks ────────────── -->
+  <line x1="450" y1="85"  x2="450" y2="125" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="450" y1="195" x2="450" y2="235" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="450" y1="305" x2="450" y2="345" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="450" y1="415" x2="450" y2="470" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="450" y1="915" x2="450" y2="955" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- ─── NO → STOP arrow (down-left) ───────────────────────────── -->
+  <path d="M280,1045 L200,1045 L200,1172"
+        fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- ─── YES → loop back to "Capture chunk" (around the right side) ── -->
+  <path d="M620,1045 L815,1045 L815,270 L630,270"
+        fill="none" stroke="#1f2937" stroke-width="2.5"
+        stroke-dasharray="7 5" marker-end="url(#arr)"/>
+  <text x="830" y="650" font-size="13" fill="#6b7280"
+        font-style="italic" transform="rotate(-90 830 650)">
+    loop next chunk  (every 186 ms)
+  </text>
+
+  <!-- ─── Footer ────────────────────────────────────────────────── -->
+  <text x="450" y="1265" text-anchor="middle" font-size="12.5"
+        font-style="italic" fill="#6b7280">
+    End-to-end latency from capture to speaker: ~ 190 ms
+  </text>
+</svg>

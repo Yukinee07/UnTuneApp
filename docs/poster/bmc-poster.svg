@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 1160"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!-- UnTuneApp — Business Model Canvas poster (icon-driven, CA-RAG-style) -->
+
+  <defs>
+    <style>
+      .ttl     { font-size: 15px; font-weight: 800; fill: #fff; letter-spacing: 1px; }
+      .item    { font-size: 13.5px; font-weight: 600; fill: #1f2937; }
+      .item-b  { font-size: 13.5px; font-weight: 800; fill: #1f2937; }
+      .hl-ttl  { font-size: 16px; font-weight: 800; }
+      .hl-sub  { font-size: 12px; fill: #64748b; }
+      .grid-l  { font-size: 11.5px; font-weight: 700; fill: #334155; }
+    </style>
+
+    <!-- Stroke-based icons (currentColor) -->
+    <symbol id="i-cap"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 L22 9 L12 14 L2 9 Z"/><path d="M6 11 v5 c0 1 2.5 3 6 3 s6 -2 6 -3 v-5"/></symbol>
+    <symbol id="i-gear"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3 M12 19v3 M2 12h3 M19 12h3 M5 5l2 2 M17 17l2 2 M19 5l-2 2 M7 17l-2 2"/></symbol>
+    <symbol id="i-plug"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6 M15 2v6 M7 8h10v3a5 5 0 0 1-10 0z M12 16v6"/></symbol>
+    <symbol id="i-db"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14a8 3 0 0 0 16 0V5 M4 12a8 3 0 0 0 16 0"/></symbol>
+    <symbol id="i-mosque" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 2 3 4 0 6c-3-2-2-4 0-6z M4 12c0-3 4-4 8-4s8 1 8 4 M4 12v9 M20 12v9 M4 21h16 M10 21v-4a2 2 0 0 1 4 0v4"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 2 6 6 6 11l-3 3H9l-3-3C6 8 8 4 12 2z"/><circle cx="12" cy="9" r="2"/><path d="M9 17l-3 5 M15 17l3 5"/></symbol>
+    <symbol id="i-brain"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-1 5 3 3 0 0 0 2 4 3 3 0 0 0 5 1V4a3 3 0 0 0-0 0z M15 4a3 3 0 0 1 3 3 3 3 0 0 1 1 5 3 3 0 0 1-2 4 3 3 0 0 1-5 1"/></symbol>
+    <symbol id="i-chart"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18 M7 15l4-5 4 3 5-7"/></symbol>
+    <symbol id="i-code"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5 M15 7l5 5-5 5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6a4 4 0 0 0 5 5l-9 9-5-5z M16 4l4 4"/></symbol>
+    <symbol id="i-chat"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="i-bolt"   viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 H11 L10 22 L20 9 H13 Z"/></symbol>
+    <symbol id="i-lock"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-tune"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="10" cy="7" r="2.3" fill="#fff"/><line x1="4" y1="13" x2="20" y2="13"/><circle cx="15" cy="13" r="2.3" fill="#fff"/><line x1="4" y1="19" x2="20" y2="19"/><circle cx="8" cy="19" r="2.3" fill="#fff"/></symbol>
+    <symbol id="i-note"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+    <symbol id="i-moon"   viewBox="0 0 24 24" fill="currentColor"><path d="M20 14 A8 8 0 1 1 10 4 A6 6 0 0 0 20 14 Z"/></symbol>
+    <symbol id="i-dl"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12 M7 10l5 5 5-5 M4 20h16"/></symbol>
+    <symbol id="i-book"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4z M20 4h-7a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7z"/></symbol>
+    <symbol id="i-hand"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11l5-3 5 2 5-2 5 3-5 5-5-2-5 2z"/></symbol>
+    <symbol id="i-users"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0 M16 5a3 3 0 0 1 0 6 M16 14a6 6 0 0 1 5 6"/></symbol>
+    <symbol id="i-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5-9 5z M7 11v6c0 1 2.5 2 5 2s5-1 5-2v-6"/></symbol>
+    <symbol id="i-mic"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0 M12 17v4 M9 21h6"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6 M12 16v4"/></symbol>
+    <symbol id="i-globe"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18"/></symbol>
+    <symbol id="i-git"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="9" r="3"/><path d="M6 9v6 M18 12c0 4-6 2-6 6"/></symbol>
+    <symbol id="i-mega"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l14-6v16L3 14z"/><path d="M3 10v4 M17 8c2 1 2 7 0 8"/></symbol>
+    <symbol id="i-store"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-5h14l1 5 M4 9h16v11H4z M4 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></symbol>
+    <symbol id="i-clock"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-cloud"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17a4 4 0 0 1 1-7.9A5 5 0 0 1 17 9a3.5 3.5 0 0 1 0 8z"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20 M17 6c0-2-2.5-3-5-3s-5 1-5 4 2.5 3.5 5 4 5 1 5 4-2.5 3-5 3-5-1-5-3"/></symbol>
+    <symbol id="i-gift"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18 M12 9v12 M12 9c-2-4-7-3-5 0 M12 9c2-4 7-3 5 0"/></symbol>
+    <symbol id="i-key"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5"/><path d="M11.5 11.5L21 21 M17 17l2-2 M19 19l2-2"/></symbol>
+    <symbol id="i-api"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4 4 4 M17 8l4 4-4 4 M14 6l-4 12"/></symbol>
+    <symbol id="i-tag"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+    <symbol id="i-card"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20 M6 15h4"/></symbol>
+    <symbol id="i-spark"  viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 11 L14 13 L12 20 L10 13 L3 11 L10 9 Z"/></symbol>
+  </defs>
+
+  <rect width="1640" height="1160" fill="#f8fafc"/>
+
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <!-- Left QR -->
+  <image href="data:image/png;base64,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" x="40" y="22" width="92" height="92"/>
+  <text x="86" y="128" text-anchor="middle" font-size="11" font-weight="800" fill="#475569" letter-spacing="1">GITHUB REPO</text>
+  <!-- Right QR -->
+  <image href="data:image/png;base64,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" x="1508" y="22" width="92" height="92"/>
+  <text x="1554" y="128" text-anchor="middle" font-size="11" font-weight="800" fill="#475569" letter-spacing="1">TRY IT LIVE</text>
+
+  <!-- Center title -->
+  <g transform="translate(820,40)">
+    <!-- mark: ringed music note with slash -->
+    <g transform="translate(-250,0)">
+      <circle cx="22" cy="22" r="20" fill="none" stroke="#8b5cf6" stroke-width="3"/>
+      <use href="#i-note" x="10" y="10" width="24" height="24" style="color:#1f2937"/>
+      <line x1="6" y1="38" x2="38" y2="6" stroke="#ec4899" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <text x="0" y="34" text-anchor="middle" font-size="44" font-weight="900" fill="#0f172a" letter-spacing="-1">UnTuneApp</text>
+    <text x="0" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="#8b5cf6" letter-spacing="6">BUSINESS MODEL CANVAS</text>
+  </g>
+
+  <!-- ═══════════════════ TOP HIGHLIGHT STRIP ═══════════════════ -->
+  <g>
+    <rect x="240" y="116" width="1160" height="64" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+    <line x1="627" y1="128" x2="627" y2="168" stroke="#e2e8f0"/>
+    <line x1="1013" y1="128" x2="1013" y2="168" stroke="#e2e8f0"/>
+
+    <use href="#i-bolt" x="300" y="132" width="30" height="30" style="color:#8b5cf6"/>
+    <text x="345" y="146" class="hl-ttl" fill="#0f172a">REAL-TIME</text>
+    <text x="345" y="166" class="hl-sub">sub-200 ms · live, on-the-fly</text>
+
+    <use href="#i-lock" x="690" y="132" width="30" height="30" style="color:#06b6d4"/>
+    <text x="735" y="146" class="hl-ttl" fill="#0f172a">100% PRIVATE</text>
+    <text x="735" y="166" class="hl-sub">on-device · zero cloud uploads</text>
+
+    <use href="#i-code" x="1075" y="132" width="30" height="30" style="color:#10b981"/>
+    <text x="1120" y="146" class="hl-ttl" fill="#0f172a">OPEN-SOURCE</text>
+    <text x="1120" y="166" class="hl-sub">free · runs on your own GPU</text>
+  </g>
+
+  <!-- ═══════════════════ ROW 1 — 5 BLOCKS ═══════════════════ -->
+  <!-- col x: 30 / 348 / 666 / 984 / 1302 ; width 306 ; top y=200 h=400 -->
+
+  <!-- KEY PARTNERS (emerald) -->
+  <g>
+    <rect x="30" y="200" width="306" height="400" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="30" y="200" width="306" height="40" rx="10" fill="#10b981"/><rect x="30" y="230" width="306" height="10" fill="#10b981"/>
+    <use href="#i-users" x="44" y="210" width="20" height="20" style="color:#fff"/>
+    <text x="72" y="226" class="ttl">KEY PARTNERS</text>
+    <g style="color:#059669">
+      <use href="#i-cap"    x="48" y="262" width="18" height="18"/> <text x="74" y="276" class="item-b">IIUM · KICT</text>
+      <use href="#i-gear"   x="48" y="296" width="18" height="18"/> <text x="74" y="310" class="item">PyTorch · Next.js · FastAPI</text>
+      <use href="#i-plug"   x="48" y="330" width="18" height="18"/> <text x="74" y="344" class="item">VB-Audio driver</text>
+      <use href="#i-db"     x="48" y="364" width="18" height="18"/> <text x="74" y="378" class="item">MUSDB18-HQ · Demucs</text>
+      <use href="#i-mosque" x="48" y="398" width="18" height="18"/> <text x="74" y="412" class="item">Masjids · MSAs</text>
+      <use href="#i-mic"    x="48" y="432" width="18" height="18"/> <text x="74" y="446" class="item">Muslim creators</text>
+      <use href="#i-rocket" x="48" y="466" width="18" height="18"/> <text x="74" y="480" class="item">Cloud GPU · HF <tspan fill="#94a3b8">(future)</tspan></text>
+      <use href="#i-store"  x="48" y="500" width="18" height="18"/> <text x="74" y="514" class="item">Browser stores <tspan fill="#94a3b8">(future)</tspan></text>
+    </g>
+  </g>
+
+  <!-- KEY ACTIVITIES (teal) -->
+  <g>
+    <rect x="348" y="200" width="306" height="400" rx="10" fill="#f0fdfa" stroke="#14b8a6" stroke-width="1.5"/>
+    <rect x="348" y="200" width="306" height="40" rx="10" fill="#14b8a6"/><rect x="348" y="230" width="306" height="10" fill="#14b8a6"/>
+    <use href="#i-gear" x="362" y="210" width="20" height="20" style="color:#fff"/>
+    <text x="390" y="226" class="ttl">KEY ACTIVITIES</text>
+    <g style="color:#0d9488">
+      <use href="#i-brain"  x="366" y="264" width="18" height="18"/> <text x="392" y="278" class="item-b">Train v14 · v15</text>
+      <use href="#i-chart"  x="366" y="300" width="18" height="18"/> <text x="392" y="314" class="item">Harvest YouTube data</text>
+      <use href="#i-code"   x="366" y="336" width="18" height="18"/> <text x="392" y="350" class="item">Build &amp; ship the app</text>
+      <use href="#i-wrench" x="366" y="372" width="18" height="18"/> <text x="392" y="386" class="item">Cross-platform port</text>
+      <use href="#i-store"  x="366" y="408" width="18" height="18"/> <text x="392" y="422" class="item">Browser extension</text>
+      <use href="#i-spark"  x="366" y="444" width="18" height="18"/> <text x="392" y="458" class="item">Blind listening tests</text>
+      <use href="#i-chat"   x="366" y="480" width="18" height="18"/> <text x="392" y="494" class="item">Community &amp; docs</text>
+    </g>
+  </g>
+
+  <!-- VALUE PROPOSITIONS (violet) -->
+  <g>
+    <rect x="666" y="200" width="306" height="400" rx="10" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2.5"/>
+    <rect x="666" y="200" width="306" height="40" rx="10" fill="#8b5cf6"/><rect x="666" y="230" width="306" height="10" fill="#8b5cf6"/>
+    <use href="#i-spark" x="680" y="210" width="20" height="20" style="color:#fff"/>
+    <text x="708" y="226" class="ttl">VALUE PROPOSITION</text>
+    <g style="color:#7c3aed">
+      <use href="#i-note" x="684" y="262" width="20" height="20"/> <text x="712" y="277" class="item-b" fill="#5b21b6">Mute music, keep voice</text>
+      <use href="#i-bolt" x="684" y="300" width="20" height="20"/> <text x="712" y="315" class="item-b">Real-time · sub-200 ms</text>
+      <use href="#i-lock" x="684" y="338" width="20" height="20"/> <text x="712" y="353" class="item-b">100% on-device</text>
+      <use href="#i-code" x="684" y="376" width="20" height="20"/> <text x="712" y="391" class="item-b">Open-source &amp; free</text>
+      <use href="#i-tune" x="684" y="414" width="20" height="20"/> <text x="712" y="429" class="item-b">File · YouTube · Live</text>
+      <use href="#i-moon" x="684" y="452" width="20" height="20"/> <text x="712" y="467" class="item-b">Halal media access</text>
+    </g>
+    <!-- competitor strip -->
+    <rect x="682" y="492" width="274" height="92" rx="8" fill="#fff1f2" stroke="#fecdd3"/>
+    <text x="694" y="510" font-size="11" font-weight="800" fill="#9f1239" letter-spacing="1">WHY US — COMPETITORS FALL SHORT</text>
+    <text x="694" y="532" font-size="12" fill="#7f1d1d">✗ LALAL.ai · Moises — cloud-only</text>
+    <text x="694" y="550" font-size="12" fill="#7f1d1d">✗ HaramMute — browser-only, limited</text>
+    <text x="694" y="568" font-size="12" fill="#7f1d1d">✗ Spleeter · Demucs — offline-only</text>
+  </g>
+
+  <!-- CUSTOMER RELATIONSHIPS (pink) -->
+  <g>
+    <rect x="984" y="200" width="306" height="400" rx="10" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.5"/>
+    <rect x="984" y="200" width="306" height="40" rx="10" fill="#ec4899"/><rect x="984" y="230" width="306" height="10" fill="#ec4899"/>
+    <use href="#i-chat" x="998" y="210" width="20" height="20" style="color:#fff"/>
+    <text x="1026" y="226" class="ttl">CUSTOMER RELATIONS</text>
+    <g style="color:#db2777">
+      <use href="#i-git"   x="1002" y="264" width="18" height="18"/> <text x="1028" y="278" class="item-b">Open-source community</text>
+      <use href="#i-chat"  x="1002" y="300" width="18" height="18"/> <text x="1028" y="314" class="item">Discord · Telegram</text>
+      <use href="#i-dl"    x="1002" y="336" width="18" height="18"/> <text x="1028" y="350" class="item">Free self-serve</text>
+      <use href="#i-book"  x="1002" y="372" width="18" height="18"/> <text x="1028" y="386" class="item">Tutorials &amp; blog</text>
+      <use href="#i-cap"   x="1002" y="408" width="18" height="18"/> <text x="1028" y="422" class="item">Public FYP report</text>
+      <use href="#i-hand"  x="1002" y="444" width="18" height="18"/> <text x="1028" y="458" class="item">Institutional support</text>
+    </g>
+  </g>
+
+  <!-- CUSTOMER SEGMENTS (amber) -->
+  <g>
+    <rect x="1302" y="200" width="306" height="400" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="1302" y="200" width="306" height="40" rx="10" fill="#f59e0b"/><rect x="1302" y="230" width="306" height="10" fill="#f59e0b"/>
+    <use href="#i-users" x="1316" y="210" width="20" height="20" style="color:#fff"/>
+    <text x="1344" y="226" class="ttl">CUSTOMER SEGMENTS</text>
+    <!-- big stat -->
+    <text x="1455" y="300" text-anchor="middle" font-size="60" font-weight="900" fill="#d97706" letter-spacing="-2">1.9B</text>
+    <text x="1455" y="324" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Muslims worldwide</text>
+    <line x1="1318" y1="342" x2="1592" y2="342" stroke="#fde68a"/>
+    <g style="color:#d97706">
+      <use href="#i-moon"   x="1318" y="358" width="18" height="18"/> <text x="1344" y="372" class="item-b">Practising Muslims</text>
+      <use href="#i-school" x="1318" y="394" width="18" height="18"/> <text x="1344" y="408" class="item">Islamic schools</text>
+      <use href="#i-mosque" x="1318" y="430" width="18" height="18"/> <text x="1344" y="444" class="item">Masjids · da'wah</text>
+      <use href="#i-mic"    x="1318" y="466" width="18" height="18"/> <text x="1344" y="480" class="item">Muslim creators</text>
+      <use href="#i-person" x="1318" y="502" width="18" height="18"/> <text x="1344" y="516" class="item">ADHD · hearing-impaired</text>
+      <use href="#i-api"    x="1318" y="538" width="18" height="18"/> <text x="1344" y="552" class="item">Podcast platforms <tspan fill="#94a3b8">(B2B)</tspan></text>
+    </g>
+  </g>
+
+  <!-- ═══════════════════ ROW 2 — RESOURCES | CHANNELS ═══════════════════ -->
+  <!-- y=614 h=150 ; left spans col1-2 (x=30 w=624) ; right spans col4-5 (x=984 w=624) -->
+
+  <!-- KEY RESOURCES (cyan) -->
+  <g>
+    <rect x="30" y="614" width="624" height="150" rx="10" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="30" y="614" width="624" height="38" rx="10" fill="#06b6d4"/><rect x="30" y="644" width="624" height="8" fill="#06b6d4"/>
+    <use href="#i-db" x="44" y="623" width="20" height="20" style="color:#fff"/>
+    <text x="72" y="639" class="ttl">KEY RESOURCES</text>
+    <g style="color:#0891b2">
+      <use href="#i-brain"   x="48"  y="672" width="18" height="18"/> <text x="74"  y="686" class="item-b">HSTasNet v12 model</text>
+      <use href="#i-code"    x="48"  y="708" width="18" height="18"/> <text x="74"  y="722" class="item">Open-source codebase</text>
+      <use href="#i-users"   x="350" y="672" width="18" height="18"/> <text x="376" y="686" class="item">Founders + IIUM</text>
+      <use href="#i-monitor" x="350" y="708" width="18" height="18"/> <text x="376" y="722" class="item">RTX 4060 hardware</text>
+    </g>
+  </g>
+
+  <!-- CHANNELS (blue) -->
+  <g>
+    <rect x="984" y="614" width="624" height="150" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="984" y="614" width="624" height="38" rx="10" fill="#3b82f6"/><rect x="984" y="644" width="624" height="8" fill="#3b82f6"/>
+    <use href="#i-mega" x="998" y="623" width="20" height="20" style="color:#fff"/>
+    <text x="1026" y="639" class="ttl">CHANNELS</text>
+    <g style="color:#2563eb">
+      <use href="#i-globe" x="1002" y="672" width="18" height="18"/> <text x="1028" y="686" class="item-b">Website</text>
+      <use href="#i-git"   x="1002" y="708" width="18" height="18"/> <text x="1028" y="722" class="item">GitHub</text>
+      <use href="#i-mega"  x="1304" y="672" width="18" height="18"/> <text x="1330" y="686" class="item">Social · creators</text>
+      <use href="#i-store" x="1304" y="708" width="18" height="18"/> <text x="1330" y="722" class="item">App stores <tspan fill="#94a3b8">(future)</tspan></text>
+    </g>
+  </g>
+
+  <!-- ═══════════════════ CENTER EMBLEM ═══════════════════ -->
+  <g transform="translate(820,720)">
+    <circle cx="0" cy="0" r="74" fill="#ffffff" stroke="#8b5cf6" stroke-width="3"/>
+    <circle cx="0" cy="0" r="64" fill="#f5f3ff"/>
+    <use href="#i-note" x="-26" y="-34" width="52" height="52" style="color:#8b5cf6"/>
+    <line x1="-30" y1="20" x2="30" y2="-30" stroke="#ec4899" stroke-width="5" stroke-linecap="round"/>
+    <text x="0" y="44" text-anchor="middle" font-size="11" font-weight="800" fill="#5b21b6" letter-spacing="1">MUTE · KEEP · STREAM</text>
+  </g>
+
+  <!-- ═══════════════════ ROW 3 — COST | REVENUE (icon grids) ═══════════════════ -->
+  <!-- y=778 h=270 ; cost x=30 w=716 ; revenue x=894 w=714 ; center emblem between -->
+
+  <!-- COST STRUCTURE (rose) -->
+  <g>
+    <rect x="30" y="778" width="716" height="270" rx="10" fill="#fff1f2" stroke="#f43f5e" stroke-width="1.5"/>
+    <rect x="30" y="778" width="716" height="40" rx="10" fill="#f43f5e"/><rect x="30" y="808" width="716" height="10" fill="#f43f5e"/>
+    <use href="#i-dollar" x="44" y="788" width="20" height="20" style="color:#fff"/>
+    <text x="72" y="804" class="ttl">COST STRUCTURE</text>
+    <!-- icon grid 3 cols × 2 rows -->
+    <g style="color:#e11d48" text-anchor="middle">
+      <g transform="translate(150,870)"><use href="#i-bolt"  x="-15" y="-15" width="30" height="30"/></g>
+      <text x="150" y="918" class="grid-l">GPU power</text>
+      <text x="150" y="934" font-size="10" fill="#94a3b8">~$0 local</text>
+
+      <g transform="translate(390,870)"><use href="#i-globe" x="-15" y="-15" width="30" height="30"/></g>
+      <text x="390" y="918" class="grid-l">Domain · host</text>
+      <text x="390" y="934" font-size="10" fill="#94a3b8">$15 / yr</text>
+
+      <g transform="translate(620,870)"><use href="#i-clock" x="-15" y="-15" width="30" height="30"/></g>
+      <text x="620" y="918" class="grid-l">Dev time</text>
+      <text x="620" y="934" font-size="10" fill="#94a3b8">volunteer</text>
+
+      <g transform="translate(150,980)"><use href="#i-cloud"  x="-15" y="-15" width="30" height="30"/></g>
+      <text x="150" y="1028" class="grid-l">Cloud GPU</text>
+      <text x="150" y="1044" font-size="10" fill="#94a3b8">$0.5–2k/mo*</text>
+
+      <g transform="translate(390,980)"><use href="#i-mega"   x="-15" y="-15" width="30" height="30"/></g>
+      <text x="390" y="1028" class="grid-l">Marketing</text>
+      <text x="390" y="1044" font-size="10" fill="#94a3b8">future*</text>
+
+      <g transform="translate(620,980)"><use href="#i-person" x="-15" y="-15" width="30" height="30"/></g>
+      <text x="620" y="1028" class="grid-l">Salaries</text>
+      <text x="620" y="1044" font-size="10" fill="#94a3b8">future*</text>
+    </g>
+  </g>
+
+  <!-- REVENUE STREAMS (green) -->
+  <g>
+    <rect x="894" y="778" width="714" height="270" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="894" y="778" width="714" height="40" rx="10" fill="#22c55e"/><rect x="894" y="808" width="714" height="10" fill="#22c55e"/>
+    <use href="#i-chart" x="908" y="788" width="20" height="20" style="color:#fff"/>
+    <text x="936" y="804" class="ttl">REVENUE STREAMS</text>
+    <g style="color:#16a34a" text-anchor="middle">
+      <g transform="translate(1010,870)"><use href="#i-tag"    x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1010" y="918" class="grid-l">Free tier</text>
+      <text x="1010" y="934" font-size="10" fill="#94a3b8">local</text>
+
+      <g transform="translate(1250,870)"><use href="#i-card"   x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1250" y="918" class="grid-l">Premium</text>
+      <text x="1250" y="934" font-size="10" fill="#94a3b8">$5 / mo</text>
+
+      <g transform="translate(1490,870)"><use href="#i-key"    x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1490" y="918" class="grid-l">Lifetime</text>
+      <text x="1490" y="934" font-size="10" fill="#94a3b8">$9.99</text>
+
+      <g transform="translate(1010,980)"><use href="#i-api"    x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1010" y="1028" class="grid-l">White-label API</text>
+      <text x="1010" y="1044" font-size="10" fill="#94a3b8">B2B</text>
+
+      <g transform="translate(1250,980)"><use href="#i-gift"   x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1250" y="1028" class="grid-l">Donations</text>
+      <text x="1250" y="1044" font-size="10" fill="#94a3b8">sadaqah</text>
+
+      <g transform="translate(1490,980)"><use href="#i-hand"   x="-15" y="-15" width="30" height="30"/></g>
+      <text x="1490" y="1028" class="grid-l">Sponsorships</text>
+      <text x="1490" y="1044" font-size="10" fill="#94a3b8">partners</text>
+    </g>
+  </g>
+
+  <!-- ═══════════════════ BOTTOM TAGLINE BANNER ═══════════════════ -->
+  <g>
+    <rect x="30" y="1070" width="1578" height="58" rx="12" fill="#0f172a"/>
+    <use href="#i-moon" x="60" y="1085" width="28" height="28" style="color:#a78bfa"/>
+    <text x="820" y="1100" text-anchor="middle" font-size="19" font-weight="800" fill="#fff">
+      UnTuneApp — helping <tspan fill="#a78bfa">1.9 billion Muslims</tspan> access modern media,
+      <tspan fill="#67e8f9"> without compromise.</tspan>
+    </text>
+    <text x="820" y="1120" text-anchor="middle" font-size="11" fill="#94a3b8">Mute the music. Keep the voice. · Open-source · On-device · github.com/Yukinee07/UnTuneApp</text>
+  </g>
+</svg>
