@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  */
 
 type Size = "sm" | "md" | "lg" | "xl";
-const HEIGHT_PX: Record<Size, number> = { sm: 26, md: 34, lg: 52, xl: 88 };
+const HEIGHT_PX: Record<Size, number> = { sm: 26, md: 34, lg: 52, xl: 140 };
 
 export function Logo({
   size      = "md",

@@ -27,6 +27,13 @@ frontend/.env*.local
 # Logo source PNGs — served copies live in frontend/public/logo/
 frontend/Logo/
 
+# Poster intermediates + large/binary source assets (kept local only)
+docs/poster/_ref/
+docs/poster/_qr.json
+docs/poster/*.pdf
+docs/poster/*.svg.tpl
+*.psd
+
 # Editor / OS
 .vscode/
 .idea/

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, Mic, Music, Cpu, Zap, AudioLines, Code2, Sparkles,
+  ArrowRight, Music, Cpu, Zap, AudioLines, Code2,
   Upload, Video, Radio, ChevronDown, Layers, Waves,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -51,6 +51,11 @@ function Hero() {
       <div className="absolute inset-0 noise pointer-events-none" />
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-28 text-center md:py-44">
+        {/* Logo sits above the headline — replaces the previous header bar */}
+        <div className="mb-10 animate-fade-in-up">
+          <Logo size="xl" href={null} />
+        </div>
+
         <h1 className="text-glow-primary max-w-5xl text-balance text-6xl font-bold leading-[0.98] tracking-[-0.025em] md:text-8xl lg:text-[6.5rem]">
           The internet is loud.{" "}
           <span className="text-gradient-violet-cyan">Mute the&nbsp;</span>
@@ -64,9 +69,10 @@ function Hero() {
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Button
+            id="hero-cta"
             render={<Link href="/process" />}
             size="lg"
-            className="glow-primary-hover h-11 px-6 text-base"
+            className="glow-primary-hover breathe-glow h-11 px-6 text-base"
           >
             Open Workspace
             <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -120,7 +126,6 @@ function MagicSection() {
   return (
     <section id="magic" className="relative mx-auto w-full max-w-6xl px-4 py-24">
       <div className="mb-14 text-center">
-        <Badge variant="secondary" className="mb-4">The magic</Badge>
         <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
           Watch the music{" "}
           <span className="text-gradient-violet-cyan">disappear</span>.
@@ -229,33 +234,30 @@ function HowSection() {
     <section className="relative bg-dots/40">
       <div className="mx-auto w-full max-w-6xl px-4 py-24">
         <div className="mb-14 text-center">
-          <Badge variant="secondary" className="mb-4">How it works</Badge>
-          <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            Three steps. Two layers. <span className="text-gradient-violet-cyan">One voice.</span>
+          <h2 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
+            How it works
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-balance text-2xl font-semibold tracking-tight text-muted-foreground md:text-3xl">
+            Three steps. Two layers.{" "}
+            <span className="text-gradient-violet-cyan">One voice.</span>
+          </p>
         </div>
 
-        {/* Connector line behind the cards on desktop */}
-        <div className="relative grid gap-6 md:grid-cols-3">
-          <div className="pointer-events-none absolute left-[16.7%] right-[16.7%] top-12 hidden h-px md:block bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="grid gap-6 md:grid-cols-3">
 
           <StepCard
             n="01"
             title="Audio in"
-            icon={<Music className="h-5 w-5" />}
             body="The full stereo mixture — singer, drums, bass, the lot — arrives 372 ms at a time, or all at once if you upload a file."
           />
           <StepCard
             n="02"
             title="HS-TasNet v12"
-            icon={<Cpu className="h-5 w-5" />}
             body="Two encoders — STFT spectrogram + learned convolution — feed five LSTM blocks that predict a complex mask per time-frequency bin."
-            highlight
           />
           <StepCard
             n="03"
             title="Vocals out"
-            icon={<Mic className="h-5 w-5" />}
             body="The mask is applied, the audio is decoded back to waveform, auto-levelled, then handed straight to your speakers or saved as .wav."
           />
         </div>
@@ -264,27 +266,20 @@ function HowSection() {
   );
 }
 
+/* Editorial step block — drops the SaaS-template-y "icon-in-tinted-square"
+   pattern.  Just a sizeable monospace number, a strong title, and prose.
+   No glow, no ring, no card-lift — calm and considered. */
 function StepCard({
-  n, title, icon, body, highlight = false,
+  n, title, body,
 }: {
-  n: string; title: string; icon: React.ReactNode; body: string; highlight?: boolean;
+  n: string; title: string; body: string;
 }) {
   return (
-    <Card className={
-      "card-lift reveal relative overflow-hidden " +
-      (highlight ? "ring-1 ring-primary/40 bg-primary/[0.03] glow-primary" : "")
-    }>
-      <CardContent className="space-y-4 pt-6">
-        <div className="flex items-center justify-between">
-          <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
-            {icon}
-          </div>
-          <span className="step-num font-mono text-2xl text-muted-foreground/40">{n}</span>
-        </div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">{body}</p>
-      </CardContent>
-    </Card>
+    <div className="reveal space-y-4 border-l border-border pl-6 py-2">
+      <p className="font-mono text-sm tracking-[0.18em] text-primary">{n}</p>
+      <h3 className="text-2xl font-semibold tracking-tight">{title}</h3>
+      <p className="text-[15px] leading-[1.7] text-muted-foreground">{body}</p>
+    </div>
   );
 }
 
